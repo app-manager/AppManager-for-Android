@@ -21,7 +21,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.appmanager.android.R;
 import com.appmanager.android.task.InstallTask;
 
 import java.io.File;
@@ -31,19 +36,44 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+        findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDownload();
+            }
+        });
+
+        ((EditText) findViewById(R.id.url)).setText("https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true");
     }
 
-    public void download() {
-        InstallTask task = new InstallTask();
-        // FIXME
+    private void confirmDownload() {
+        String url = ((EditText) findViewById(R.id.url)).getText().toString();
+        if (TextUtils.isEmpty(url)) {
+            Toast.makeText(this, "URL is required.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String name = ((EditText) findViewById(R.id.name)).getText().toString();
+        if (TextUtils.isEmpty(name)) {
+            name = url;
+        }
+        // TODO Save name and url
+        // TODO Specify auth information
+        download(url);
+    }
+
+    private void download(final String url) {
+        Toast.makeText(this, "Installing: " + url, Toast.LENGTH_LONG).show();
+        InstallTask task = new InstallTask(this);
         task.setListener(this);
-        task.execute("http://");
+        task.execute(url);
     }
 
     @Override
     public void onComplete(final String apkPath) {
         if (TextUtils.isEmpty(apkPath)) {
-            // TODO Handle download error
+            Toast.makeText(this, "Download failed!", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -16,7 +16,12 @@
 
 package com.appmanager.android.task;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,11 +37,19 @@ public class InstallTask extends AsyncTask<String, Void, String> {
         void onComplete(final String apkPath);
     }
 
+    private static final String TAG = InstallTask.class.getSimpleName();
+    private static final String BASE_DIR = "apk";
     private static final int BUFFER_SIZE = 1024;
     private InstallListener mListener;
 
     public void setListener(final InstallListener listener) {
         mListener = listener;
+    }
+
+    private Context mContext;
+
+    public InstallTask(final Context context) {
+        mContext = context;
     }
 
     @Override
@@ -49,12 +62,14 @@ public class InstallTask extends AsyncTask<String, Void, String> {
             c.setRequestMethod("GET");
             c.connect();
 
-            String basePath = "apk";
-            File file = new File(basePath);
-            file.mkdirs();
+            ContextWrapper cw = new ContextWrapper(mContext);
+            File dir = new File(cw.getExternalFilesDir(null), BASE_DIR);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
 
             final String apkName = "app.apk";
-            File outputFile = new File(file, apkName);
+            File outputFile = new File(dir, apkName);
             FileOutputStream fos = new FileOutputStream(outputFile);
 
             InputStream is = c.getInputStream();
@@ -63,16 +78,15 @@ public class InstallTask extends AsyncTask<String, Void, String> {
             while ((length = is.read(buffer)) != -1) {
                 fos.write(buffer, 0, length);
             }
+            fos.flush();
             fos.close();
             is.close();
 
-            return basePath + "/" + apkName;
+            return outputFile.getAbsolutePath();
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Log.e(TAG, "Failed to download", e);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Log.e(TAG, "Failed to download", e);
         }
         return null;
     }

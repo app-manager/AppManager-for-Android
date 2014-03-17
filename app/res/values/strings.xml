@@ -2,9 +2,11 @@
 <resources>
 
     <string name="app_name">AppManager</string>
+    <string name="activity_title_add_app">Add an app</string>
     <string name="activity_title_settings">Settings</string>
     <string name="activity_title_about">About this app</string>
     <string name="action_settings">Settings</string>
+    <string name="action_add_app">Add an app</string>
     <string name="label_version">Version</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="pref_category_general">General</string>
