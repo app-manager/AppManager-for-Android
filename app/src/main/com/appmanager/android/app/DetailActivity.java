@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -54,18 +53,22 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
             Toast.makeText(this, "URL is required.", Toast.LENGTH_SHORT).show();
             return;
         }
+
         String name = ((EditText) findViewById(R.id.name)).getText().toString();
         if (TextUtils.isEmpty(name)) {
             name = url;
         }
-        // TODO Save name and url
-        // TODO Specify auth information
-        download(url);
-    }
 
-    private void download(final String url) {
+        String basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();
+        String basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
+
+        // TODO Save name and url
+
         Toast.makeText(this, "Installing: " + url, Toast.LENGTH_LONG).show();
         InstallTask task = new InstallTask(this);
+        if (!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)) {
+            task.setBasicAuth(basicAuthUser, basicAuthPassword);
+        }
         task.setListener(this);
         task.execute(url);
     }

@@ -21,6 +21,8 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 
 import java.io.File;
@@ -41,15 +43,21 @@ public class InstallTask extends AsyncTask<String, Void, String> {
     private static final String BASE_DIR = "apk";
     private static final int BUFFER_SIZE = 1024;
     private InstallListener mListener;
+    private Context mContext;
+    private String mBasicAuthUser;
+    private String mBasicAuthPassword;
 
     public void setListener(final InstallListener listener) {
         mListener = listener;
     }
 
-    private Context mContext;
-
     public InstallTask(final Context context) {
         mContext = context;
+    }
+
+    public void setBasicAuth(final String user, final String password) {
+        mBasicAuthUser = user;
+        mBasicAuthPassword = password;
     }
 
     @Override
@@ -59,6 +67,13 @@ public class InstallTask extends AsyncTask<String, Void, String> {
             URL url = new URL(strUrl);
 
             HttpURLConnection c = (HttpURLConnection) url.openConnection();
+
+            // Optionally use basic auth
+            if (!TextUtils.isEmpty(mBasicAuthPassword) && !TextUtils.isEmpty(mBasicAuthPassword)) {
+                c.setRequestProperty("Authorization",
+                        "Basic " + base64Encode(mBasicAuthUser + ":" + mBasicAuthPassword));
+            }
+
             c.setRequestMethod("GET");
             c.connect();
 
@@ -97,5 +112,9 @@ public class InstallTask extends AsyncTask<String, Void, String> {
         if (mListener != null) {
             mListener.onComplete(s);
         }
+    }
+
+    private String base64Encode(final String in) {
+        return Base64.encodeToString(in.getBytes(), Base64.DEFAULT);
     }
 }

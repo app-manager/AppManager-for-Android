@@ -30,6 +30,28 @@
         android:layout_height="wrap_content"
         android:inputType="textUri" />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Basic Auth User (Optional)" />
+
+    <EditText
+        android:id="@+id/basicAuthUser"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Basic Auth Password (Optional)" />
+
+    <EditText
+        android:id="@+id/basicAuthPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text|textPassword" />
+
     <Button
         android:id="@+id/download"
         android:layout_width="fill_parent"
