@@ -18,6 +18,8 @@ package com.appmanager.android.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -51,6 +53,13 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         String url = ((EditText) findViewById(R.id.url)).getText().toString();
         if (TextUtils.isEmpty(url)) {
             Toast.makeText(this, "URL is required.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
+            Toast.makeText(this, "Not connected to network.", Toast.LENGTH_SHORT).show();
             return;
         }
 
