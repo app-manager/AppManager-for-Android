@@ -28,6 +28,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.appmanager.android.R;
+import com.appmanager.android.dao.FileEntryDao;
+import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
 
 import java.io.File;
@@ -50,8 +52,9 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
     }
 
     private void confirmDownload() {
-        String url = ((EditText) findViewById(R.id.url)).getText().toString();
-        if (TextUtils.isEmpty(url)) {
+        FileEntry entry = new FileEntry();
+        entry.url = ((EditText) findViewById(R.id.url)).getText().toString();
+        if (TextUtils.isEmpty(entry.url)) {
             Toast.makeText(this, "URL is required.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -63,23 +66,24 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
             return;
         }
 
-        String name = ((EditText) findViewById(R.id.name)).getText().toString();
-        if (TextUtils.isEmpty(name)) {
-            name = url;
+        entry.name = ((EditText) findViewById(R.id.name)).getText().toString();
+        if (TextUtils.isEmpty(entry.name)) {
+            entry.name = entry.url;
         }
 
-        String basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();
-        String basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
+        entry.basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();
+        entry.basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
 
-        // TODO Save name and url
+        // Save name and url
+        new FileEntryDao(this).create(entry);
 
-        Toast.makeText(this, "Installing: " + url, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Installing: " + entry.url, Toast.LENGTH_LONG).show();
         InstallTask task = new InstallTask(this);
-        if (!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)) {
-            task.setBasicAuth(basicAuthUser, basicAuthPassword);
+        if (!TextUtils.isEmpty(entry.basicAuthUser) && !TextUtils.isEmpty(entry.basicAuthPassword)) {
+            task.setBasicAuth(entry.basicAuthUser, entry.basicAuthPassword);
         }
         task.setListener(this);
-        task.execute(url);
+        task.execute(entry.url);
     }
 
     @Override

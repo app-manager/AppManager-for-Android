@@ -17,12 +17,18 @@
 package com.appmanager.android.app;
 
 import com.appmanager.android.R;
+import com.appmanager.android.adapter.FileEntryAdapter;
+import com.appmanager.android.dao.FileEntryDao;
+import com.appmanager.android.entity.FileEntry;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -30,6 +36,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadFileEntries();
     }
 
     @Override
@@ -51,4 +58,13 @@ public class MainActivity extends Activity {
         return false;
     }
 
+    private void loadFileEntries() {
+        ListView listView = (ListView) findViewById(R.id.list);
+        if (listView == null) {
+            return;
+        }
+        List<FileEntry> list = new FileEntryDao(this).findAll();
+        FileEntryAdapter adapter = new FileEntryAdapter(this, list);
+        listView.setAdapter(adapter);
+    }
 }
