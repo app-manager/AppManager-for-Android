@@ -31,12 +31,14 @@ import com.appmanager.android.R;
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
+import com.appmanager.android.validator.FileEntryValidator;
 
 import java.io.File;
 
 public class DetailActivity extends Activity implements InstallTask.InstallListener {
 
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
+    private FileEntry mFileEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,12 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         Intent intent = getIntent();
         if (intent != null) {
             if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
-                FileEntry entry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
-                if (entry != null) {
-                    ((EditText) findViewById(R.id.name)).setText(entry.name);
-                    ((EditText) findViewById(R.id.url)).setText(entry.url);
-                    ((EditText) findViewById(R.id.basicAuthUser)).setText(entry.basicAuthUser);
-                    ((EditText) findViewById(R.id.basicAuthPassword)).setText(entry.basicAuthPassword);
+                mFileEntry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
+                if (mFileEntry != null) {
+                    ((EditText) findViewById(R.id.name)).setText(mFileEntry.name);
+                    ((EditText) findViewById(R.id.url)).setText(mFileEntry.url);
+                    ((EditText) findViewById(R.id.basicAuthUser)).setText(mFileEntry.basicAuthUser);
+                    ((EditText) findViewById(R.id.basicAuthPassword)).setText(mFileEntry.basicAuthPassword);
                 }
             }
         }
@@ -61,15 +63,21 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
                 confirmDownload();
             }
         });
+        findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save();
+            }
+        });
 
         ((EditText) findViewById(R.id.url)).setText("https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true");
     }
 
     private void confirmDownload() {
-        FileEntry entry = new FileEntry();
-        entry.url = ((EditText) findViewById(R.id.url)).getText().toString();
-        if (TextUtils.isEmpty(entry.url)) {
-            Toast.makeText(this, "URL is required.", Toast.LENGTH_SHORT).show();
+        FileEntry entry = getFileEntryFromScreen();
+        FileEntryValidator validator = new FileEntryValidator(this, entry);
+        if (!validator.isValid()) {
+            Toast.makeText(this, validator.getErrors(), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -80,13 +88,9 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
             return;
         }
 
-        entry.name = ((EditText) findViewById(R.id.name)).getText().toString();
         if (TextUtils.isEmpty(entry.name)) {
             entry.name = entry.url;
         }
-
-        entry.basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();
-        entry.basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
 
         // Save name and url
         new FileEntryDao(this).create(entry);
@@ -98,6 +102,35 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         }
         task.setListener(this);
         task.execute(entry.url);
+    }
+
+    private void save() {
+        FileEntry entry = getFileEntryFromScreen();
+        FileEntryValidator validator = new FileEntryValidator(this, entry);
+        if (!validator.isValid()) {
+            Toast.makeText(this, validator.getErrors(), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (mFileEntry == null || mFileEntry.id == 0) {
+            // Create
+            new FileEntryDao(this).create(entry);
+        } else {
+            // Update
+            entry.id = mFileEntry.id;
+            new FileEntryDao(this).update(entry);
+        }
+
+        finish();
+    }
+
+    private FileEntry getFileEntryFromScreen() {
+        FileEntry entry = new FileEntry();
+        entry.url = ((EditText) findViewById(R.id.url)).getText().toString();
+        entry.name = ((EditText) findViewById(R.id.name)).getText().toString();
+        entry.basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();
+        entry.basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
+
+        return entry;
     }
 
     @Override

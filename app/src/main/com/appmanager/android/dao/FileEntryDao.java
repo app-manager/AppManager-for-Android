@@ -119,6 +119,54 @@ public class FileEntryDao {
         }
     }
 
+    public void update(final FileEntry entity) {
+        if (entity == null) {
+            return;
+        }
+        SQLiteDatabase db = null;
+        SQLiteStatement statement = null;
+        try {
+            DbHelper helper = new DbHelper(getContext());
+            db = helper.getWritableDatabase();
+            StringBuilder sb = new StringBuilder();
+            sb.append("UPDATE file_entries SET ");
+            sb.append(" name = ?, ");
+            sb.append(" url = ?, ");
+            if (entity.basicAuthUser == null) {
+                sb.append(" basic_auth_user = NULL, ");
+            } else {
+                sb.append(" basic_auth_user = ?, ");
+            }
+            if (entity.basicAuthPassword == null) {
+                sb.append(" basic_auth_password = NULL, ");
+            } else {
+                sb.append(" basic_auth_password = ?, ");
+            }
+            sb.append(" updated_at = DATETIME('now', 'localtime') ");
+            sb.append("WHERE id = ?;");
+            sb.append(");");
+            statement = db.compileStatement(sb.toString());
+            int index = 1;
+            statement.bindString(index++, entity.name);
+            statement.bindString(index++, entity.url);
+            if (entity.basicAuthUser != null) {
+                statement.bindString(index++, entity.basicAuthUser);
+            }
+            if (entity.basicAuthPassword != null) {
+                statement.bindString(index++, entity.basicAuthPassword);
+            }
+            statement.bindLong(index++, entity.id);
+            statement.execute();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
+
     private Context getContext() {
         return mContext;
     }
