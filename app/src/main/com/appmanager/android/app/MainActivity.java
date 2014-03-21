@@ -50,6 +50,9 @@ public class MainActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_reload:
+                loadFileEntries();
+                break;
             case R.id.action_add_app:
                 startActivity(new Intent(this, DetailActivity.class));
                 break;
