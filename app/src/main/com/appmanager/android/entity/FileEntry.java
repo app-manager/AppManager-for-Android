@@ -16,7 +16,25 @@
 
 package com.appmanager.android.entity;
 
-public class FileEntry {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class FileEntry implements Parcelable {
+
+    /**
+     * Creator of this class objects from Parcelable.
+     */
+    public static final Parcelable.Creator<FileEntry> CREATOR =
+            new Parcelable.Creator<FileEntry>() {
+                public FileEntry createFromParcel(final Parcel source) {
+                    return new FileEntry(source);
+                }
+
+                public FileEntry[] newArray(final int size) {
+                    return new FileEntry[size];
+                }
+            };
+
     public int id;
     public String name;
     public String url;
@@ -24,4 +42,42 @@ public class FileEntry {
     public String basicAuthPassword;
     public String createdAt;
     public String updatedAt;
+
+
+    /**
+     * Default constructor for normal creation.
+     */
+    public FileEntry() {
+    }
+
+    /**
+     * Constructor for using parcels.
+     *
+     * @param source parcel of FileEntry
+     */
+    public FileEntry(final Parcel source) {
+        id = source.readInt();
+        name = source.readString();
+        url= source.readString();
+        basicAuthUser = source.readString();
+        basicAuthPassword = source.readString();
+        createdAt = source.readString();
+        updatedAt = source.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(final Parcel dest, final int flag) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(url);
+        dest.writeString(basicAuthUser);
+        dest.writeString(basicAuthPassword);
+        dest.writeString(createdAt);
+        dest.writeString(updatedAt);
+    }
 }

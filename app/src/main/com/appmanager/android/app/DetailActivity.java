@@ -36,11 +36,25 @@ import java.io.File;
 
 public class DetailActivity extends Activity implements InstallTask.InstallListener {
 
+    public static final String EXTRA_FILE_ENTRY = "fileEntry";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
+                FileEntry entry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
+                if (entry != null) {
+                    ((EditText) findViewById(R.id.name)).setText(entry.name);
+                    ((EditText) findViewById(R.id.url)).setText(entry.url);
+                    ((EditText) findViewById(R.id.basicAuthUser)).setText(entry.basicAuthUser);
+                    ((EditText) findViewById(R.id.basicAuthPassword)).setText(entry.basicAuthPassword);
+                }
+            }
+        }
         findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
