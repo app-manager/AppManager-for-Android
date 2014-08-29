@@ -1,6 +1,8 @@
 AppManager for Android
 ===
 
+[![Build Status](https://travis-ci.org/ksoichiro/AppManager-for-Android.svg?branch=master)](https://travis-ci.org/ksoichiro/AppManager-for-Android)
+
 AppManager is the application to download and install the apps
 from outside the Google Play Store.
 
