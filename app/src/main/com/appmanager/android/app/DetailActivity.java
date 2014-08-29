@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ import java.io.File;
 public class DetailActivity extends Activity implements InstallTask.InstallListener {
 
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
+    private static final String DEFAULT_URL = "https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";
     private FileEntry mFileEntry;
 
     @Override
@@ -45,7 +47,10 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        mFileEntry = null;
+
         Intent intent = getIntent();
+        Button deleteButton = (Button)findViewById(R.id.delete);
         if (intent != null) {
             if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
                 mFileEntry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
@@ -55,6 +60,9 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
                     ((EditText) findViewById(R.id.basicAuthUser)).setText(mFileEntry.basicAuthUser);
                     ((EditText) findViewById(R.id.basicAuthPassword)).setText(mFileEntry.basicAuthPassword);
                 }
+            } else {
+                ((EditText) findViewById(R.id.url)).setText(DEFAULT_URL);
+                deleteButton.setEnabled(false);
             }
         }
         findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
@@ -69,8 +77,13 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
                 save();
             }
         });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete();
+            }
+        });
 
-        ((EditText) findViewById(R.id.url)).setText("https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true");
     }
 
     private void confirmDownload() {
@@ -93,7 +106,13 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         }
 
         // Save name and url
-        new FileEntryDao(this).create(entry);
+        if (mFileEntry == null || mFileEntry.id == 0) {
+            // Create
+            new FileEntryDao(this).create(entry);
+        } else {
+            // Update
+            new FileEntryDao(this).update(entry);
+        }
 
         Toast.makeText(this, "Installing: " + entry.url, Toast.LENGTH_LONG).show();
         InstallTask task = new InstallTask(this);
@@ -116,15 +135,25 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
             new FileEntryDao(this).create(entry);
         } else {
             // Update
-            entry.id = mFileEntry.id;
             new FileEntryDao(this).update(entry);
         }
+        finish();
+    }
 
+    private void delete(){
+        FileEntry entry = getFileEntryFromScreen();
+        entry.id = mFileEntry.id;
+        new FileEntryDao(this).delete(entry);
         finish();
     }
 
     private FileEntry getFileEntryFromScreen() {
-        FileEntry entry = new FileEntry();
+        FileEntry entry;
+        if(null == mFileEntry){
+            entry = new FileEntry();
+        } else {
+            entry = mFileEntry;
+        }
         entry.url = ((EditText) findViewById(R.id.url)).getText().toString();
         entry.name = ((EditText) findViewById(R.id.name)).getText().toString();
         entry.basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();

@@ -16,6 +16,7 @@
 
 package com.appmanager.android.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -119,6 +120,7 @@ public class FileEntryDao {
         }
     }
 
+
     public void update(final FileEntry entity) {
         if (entity == null) {
             return;
@@ -128,44 +130,39 @@ public class FileEntryDao {
         try {
             DbHelper helper = new DbHelper(getContext());
             db = helper.getWritableDatabase();
-            StringBuilder sb = new StringBuilder();
-            sb.append("UPDATE file_entries SET ");
-            sb.append(" name = ?, ");
-            sb.append(" url = ?, ");
-            if (entity.basicAuthUser == null) {
-                sb.append(" basic_auth_user = NULL, ");
-            } else {
-                sb.append(" basic_auth_user = ?, ");
-            }
-            if (entity.basicAuthPassword == null) {
-                sb.append(" basic_auth_password = NULL, ");
-            } else {
-                sb.append(" basic_auth_password = ?, ");
-            }
-            sb.append(" updated_at = DATETIME('now', 'localtime') ");
-            sb.append("WHERE id = ?;");
-            sb.append(");");
-            statement = db.compileStatement(sb.toString());
-            int index = 1;
-            statement.bindString(index++, entity.name);
-            statement.bindString(index++, entity.url);
-            if (entity.basicAuthUser != null) {
-                statement.bindString(index++, entity.basicAuthUser);
-            }
-            if (entity.basicAuthPassword != null) {
-                statement.bindString(index++, entity.basicAuthPassword);
-            }
-            statement.bindLong(index++, entity.id);
-            statement.execute();
+
+            ContentValues value = new ContentValues();
+            value.put("name", entity.name);
+            value.put("url", entity.url);
+            value.put("basic_auth_user", entity.basicAuthUser);
+            value.put("basic_auth_password", entity.basicAuthPassword);
+            value.put("created_at", entity.createdAt);
+            value.put("updated_at", entity.updatedAt); // 中身が入っているのかは見てない(=p)
+
+            db.update("file_entries", value, "id = ?", new String[]{String.valueOf(entity.id)});
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
             if (db != null) {
                 db.close();
             }
         }
     }
+
+    public void delete(final FileEntry entity) {
+        if (entity == null) {
+            return;
+        }
+        SQLiteDatabase db = null;
+        try {
+            DbHelper helper = new DbHelper(getContext());
+            db = helper.getWritableDatabase();
+            db.delete("file_entries", "id = ?", new String[]{String.valueOf(entity.id)});
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
+
 
     private Context getContext() {
         return mContext;
