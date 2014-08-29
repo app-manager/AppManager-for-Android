@@ -17,10 +17,8 @@
 package com.appmanager.android.task;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -43,7 +41,7 @@ public class InstallTask extends AsyncTask<String, Void, String> {
     private static final String BASE_DIR = "apk";
     private static final int BUFFER_SIZE = 1024;
     private InstallListener mListener;
-    private Context mContext;
+    private Activity mActivity;
     private String mBasicAuthUser;
     private String mBasicAuthPassword;
 
@@ -51,8 +49,8 @@ public class InstallTask extends AsyncTask<String, Void, String> {
         mListener = listener;
     }
 
-    public InstallTask(final Context context) {
-        mContext = context;
+    public InstallTask(final Activity activity) {
+        mActivity = activity;
     }
 
     public void setBasicAuth(final String user, final String password) {
@@ -77,7 +75,7 @@ public class InstallTask extends AsyncTask<String, Void, String> {
             c.setRequestMethod("GET");
             c.connect();
 
-            ContextWrapper cw = new ContextWrapper(mContext);
+            ContextWrapper cw = new ContextWrapper(mActivity);
             File dir = new File(cw.getExternalFilesDir(null), BASE_DIR);
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -112,6 +110,7 @@ public class InstallTask extends AsyncTask<String, Void, String> {
         if (mListener != null) {
             mListener.onComplete(s);
         }
+        mActivity.finish();
     }
 
     private String base64Encode(final String in) {
