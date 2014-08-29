@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Name" />
+        android:text="@string/label_name" />
 
     <EditText
         android:id="@+id/name"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="URL" />
+        android:text="@string/label_url" />
 
     <EditText
         android:id="@+id/url"
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Basic Auth User (Optional)" />
+        android:text="@string/label_basic_auth_user" />
 
     <EditText
         android:id="@+id/basicAuthUser"
@@ -48,7 +48,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Basic Auth Password (Optional)" />
+        android:text="@string/label_basic_auth_password" />
 
     <EditText
         android:id="@+id/basicAuthPassword"
@@ -61,17 +61,17 @@
         android:id="@+id/download"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Download" />
+        android:text="@string/label_download" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="@string/label_save" />
 
     <Button
         android:id="@+id/delete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Delete" />
+        android:text="@string/label_delete" />
 </LinearLayout>
