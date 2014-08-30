@@ -80,4 +80,35 @@ public class FileEntry implements Parcelable {
         dest.writeString(createdAt);
         dest.writeString(updatedAt);
     }
+
+
+
+    public boolean equalValues(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof FileEntry)) return false;
+
+        FileEntry fileEntry = (FileEntry) o;
+
+        if (basicAuthPassword != null ? !basicAuthPassword.equals(fileEntry.basicAuthPassword) : fileEntry.basicAuthPassword != null)
+            return false;
+        if (basicAuthUser != null ? !basicAuthUser.equals(fileEntry.basicAuthUser) : fileEntry.basicAuthUser != null)
+            return false;
+        if (name != null ? !name.equals(fileEntry.name) : fileEntry.name != null) return false;
+        if (url != null ? !url.equals(fileEntry.url) : fileEntry.url != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "FileEntry{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", basicAuthUser='" + basicAuthUser + '\'' +
+                ", basicAuthPassword='" + basicAuthPassword + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
+    }
 }
