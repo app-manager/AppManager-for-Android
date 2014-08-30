@@ -9,8 +9,14 @@ buildscript {
 
 apply plugin: 'com.android.application'
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.android.support:support-v4:20.0.+'
+    compile 'com.github.ksoichiro:simplealertdialog:1.1.1@aar'
 }
 
 android {
