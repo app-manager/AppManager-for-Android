@@ -16,12 +16,16 @@
 
 package com.appmanager.android.app;
 
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +36,7 @@ import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
 import com.appmanager.android.util.InstallUtils;
+import com.appmanager.android.util.VersionUtils;
 import com.appmanager.android.validator.FileEntryValidator;
 import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
@@ -48,6 +53,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        setupActionBar();
 
         mFileEntry = null;
 
@@ -86,6 +92,28 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    private void setupActionBar() {
+        if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
+            ActionBar ab = getActionBar();
+            if (ab == null) {
+                return;
+            }
+            if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
+                ab.setHomeButtonEnabled(true);
+            }
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void confirmDownload() {
