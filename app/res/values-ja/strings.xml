@@ -18,6 +18,7 @@
     <string name="label_version">バージョン</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
+    <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
     <string name="pref_category_general">全般</string>
     <string name="pref_category_general_title_admin_password">管理者パスワード</string>
     <string name="pref_category_version">バージョン情報</string>

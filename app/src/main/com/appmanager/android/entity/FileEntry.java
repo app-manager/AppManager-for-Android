@@ -18,6 +18,7 @@ package com.appmanager.android.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 public class FileEntry implements Parcelable {
 
@@ -58,7 +59,7 @@ public class FileEntry implements Parcelable {
     public FileEntry(final Parcel source) {
         id = source.readInt();
         name = source.readString();
-        url= source.readString();
+        url = source.readString();
         basicAuthUser = source.readString();
         basicAuthPassword = source.readString();
         createdAt = source.readString();
@@ -80,4 +81,49 @@ public class FileEntry implements Parcelable {
         dest.writeString(createdAt);
         dest.writeString(updatedAt);
     }
+
+    /**
+     * Copy meta data like id, createdAt, ... to update myself on database
+     * with other object.
+     *
+     * @param entry target object
+     */
+    public void copyMetaDataTo(final FileEntry entry) {
+        if (entry == null) {
+            return;
+        }
+        entry.id = id;
+        entry.createdAt = createdAt;
+        entry.updatedAt = updatedAt;
+    }
+
+    /**
+     * Like {@code equals} but compares just visible/editable contents.
+     *
+     * @param entry File entry to be compared to this object
+     * @return true if two contents exactly matches
+     */
+    public boolean contentEqualsTo(final FileEntry entry) {
+        return entry != null
+                && stringMatches(name, entry.name)
+                && stringMatches(url, entry.url)
+                && stringMatches(basicAuthUser, entry.basicAuthUser)
+                && stringMatches(basicAuthPassword, entry.basicAuthPassword);
+    }
+
+    /**
+     * Compares to Strings.<br />
+     * Assumes null as empty("").
+     *
+     * @param s1 target string
+     * @param s2 string to be compared to s1
+     * @return true if s1 and s2 matches
+     */
+    private boolean stringMatches(final String s1, final String s2) {
+        if (TextUtils.isEmpty(s1)) {
+            return TextUtils.isEmpty(s2);
+        }
+        return s1.equals(s2);
+    }
+
 }
