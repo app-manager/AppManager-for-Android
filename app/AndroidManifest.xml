@@ -29,7 +29,21 @@
         </activity>
         <activity
             android:name="com.appmanager.android.app.DetailActivity"
-            android:label="@string/activity_title_add_app" />
+            android:label="@string/activity_title_add_app"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="import-to-appmanager" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="import-to-appmanager" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.appmanager.android.app.SettingsActivity"
             android:label="@string/activity_title_settings" />

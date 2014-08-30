@@ -35,6 +35,7 @@ import com.appmanager.android.R;
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
+import com.appmanager.android.util.AppManagerSchema;
 import com.appmanager.android.util.InstallUtils;
 import com.appmanager.android.util.VersionUtils;
 import com.appmanager.android.validator.FileEntryValidator;
@@ -64,10 +65,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
             if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
                 mFileEntry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
                 if (mFileEntry != null) {
-                    ((EditText) findViewById(R.id.name)).setText(mFileEntry.name);
-                    ((EditText) findViewById(R.id.url)).setText(mFileEntry.url);
-                    ((EditText) findViewById(R.id.basicAuthUser)).setText(mFileEntry.basicAuthUser);
-                    ((EditText) findViewById(R.id.basicAuthPassword)).setText(mFileEntry.basicAuthPassword);
+                    restoreValues(mFileEntry);
                 }
             } else {
                 ((EditText) findViewById(R.id.url)).setText(DEFAULT_URL);
@@ -96,6 +94,25 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     }
 
     @Override
+    protected void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        Intent intent = getIntent();
+        if(AppManagerSchema.canDecode(intent)){
+            FileEntry fe = AppManagerSchema.decode(intent.getData().toString());
+            if(null != fe){
+                restoreValues(fe);
+            }
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             confirmFinish();
@@ -106,6 +123,13 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     @Override
     public void onBackPressed() {
         confirmFinish();
+    }
+
+    private void restoreValues(FileEntry entry){
+        ((EditText) findViewById(R.id.name)).setText(entry.name);
+        ((EditText) findViewById(R.id.url)).setText(entry.url);
+        ((EditText) findViewById(R.id.basicAuthUser)).setText(entry.basicAuthUser);
+        ((EditText) findViewById(R.id.basicAuthPassword)).setText(entry.basicAuthPassword);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
