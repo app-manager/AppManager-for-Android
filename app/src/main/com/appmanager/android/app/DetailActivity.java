@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,9 +31,8 @@ import com.appmanager.android.R;
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
+import com.appmanager.android.util.InstallUtils;
 import com.appmanager.android.validator.FileEntryValidator;
-
-import java.io.File;
 
 public class DetailActivity extends Activity implements InstallTask.InstallListener {
 
@@ -169,8 +167,6 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
             return;
         }
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(new File(apkPath)), "application/vnd.android.package-archive");
-        startActivity(intent);
+        InstallUtils.delegateInstall(this, apkPath);
     }
 }
