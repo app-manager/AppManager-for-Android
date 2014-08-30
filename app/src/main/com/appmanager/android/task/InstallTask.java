@@ -17,19 +17,12 @@
 package com.appmanager.android.task;
 
 import android.app.Activity;
-import android.content.ContextWrapper;
 import android.os.AsyncTask;
-import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import com.appmanager.android.util.AppDownloader;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class InstallTask extends AsyncTask<String, Void, String> {
 
@@ -38,8 +31,6 @@ public class InstallTask extends AsyncTask<String, Void, String> {
     }
 
     private static final String TAG = InstallTask.class.getSimpleName();
-    private static final String BASE_DIR = "apk";
-    private static final int BUFFER_SIZE = 1024;
     private InstallListener mListener;
     private Activity mActivity;
     private String mBasicAuthUser;
@@ -62,41 +53,10 @@ public class InstallTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(final String... strings) {
         String strUrl = strings[0];
         try {
-            URL url = new URL(strUrl);
-
-            HttpURLConnection c = (HttpURLConnection) url.openConnection();
-
-            // Optionally use basic auth
-            if (!TextUtils.isEmpty(mBasicAuthPassword) && !TextUtils.isEmpty(mBasicAuthPassword)) {
-                c.setRequestProperty("Authorization",
-                        "Basic " + base64Encode(mBasicAuthUser + ":" + mBasicAuthPassword));
-            }
-
-            c.setRequestMethod("GET");
-            c.connect();
-
-            ContextWrapper cw = new ContextWrapper(mActivity);
-            File dir = new File(cw.getExternalFilesDir(null), BASE_DIR);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-
-            final String apkName = "app.apk";
-            File outputFile = new File(dir, apkName);
-            FileOutputStream fos = new FileOutputStream(outputFile);
-
-            InputStream is = c.getInputStream();
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int length = 0;
-            while ((length = is.read(buffer)) != -1) {
-                fos.write(buffer, 0, length);
-            }
-            fos.flush();
-            fos.close();
-            is.close();
-
-            return outputFile.getAbsolutePath();
-        } catch (MalformedURLException e) {
+            AppDownloader downloader = new AppDownloader(strUrl);
+            downloader.setBasicAuth(mBasicAuthUser, mBasicAuthPassword);
+            return downloader.download(mActivity);
+        } catch (IllegalArgumentException e) {
             Log.e(TAG, "Failed to download", e);
         } catch (IOException e) {
             Log.e(TAG, "Failed to download", e);
@@ -111,9 +71,5 @@ public class InstallTask extends AsyncTask<String, Void, String> {
             mListener.onComplete(s);
         }
         mActivity.finish();
-    }
-
-    private String base64Encode(final String in) {
-        return Base64.encodeToString(in.getBytes(), Base64.DEFAULT);
     }
 }
