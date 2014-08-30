@@ -31,6 +31,32 @@ so these features are not implemented.
 * Administrator can manage application lifetime, which means
   that you can control when the users can download and use the app.
 
+## Adding entry using Intent
+
+If you want to an entry on multiple devices, you can send email with a special format URL.
+
+### import-to-manager host
+
+AppManager supports `http` and `https` scheme with `import-to-manager` host.
+
+e.g.
+
+If you send an email with following URL,
+
+```
+https://user:pass@import-to-appmanager/github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#appName
+```
+
+↓
+
+AppManager will parse URL and set information for a new entry:
+
+```
+Name: appName
+Basic Auth User: user
+Basic Auth Password: pass
+URL: https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true
+```
 
 ## Developed By
 
