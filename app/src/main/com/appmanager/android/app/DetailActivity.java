@@ -16,11 +16,11 @@
 
 package com.appmanager.android.app;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -33,11 +33,15 @@ import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
 import com.appmanager.android.util.InstallUtils;
 import com.appmanager.android.validator.FileEntryValidator;
+import com.simplealertdialog.SimpleAlertDialog;
+import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
-public class DetailActivity extends Activity implements InstallTask.InstallListener {
+public class DetailActivity extends FragmentActivity implements InstallTask.InstallListener,
+        SimpleAlertDialog.OnClickListener {
 
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
     private static final String DEFAULT_URL = "https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";
+    private static final int DIALOG_REQUEST_CODE_DELETE = 1;
     private FileEntry mFileEntry;
 
     @Override
@@ -48,7 +52,7 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         mFileEntry = null;
 
         Intent intent = getIntent();
-        Button deleteButton = (Button)findViewById(R.id.delete);
+        Button deleteButton = (Button) findViewById(R.id.delete);
         if (intent != null) {
             if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
                 mFileEntry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
@@ -78,7 +82,7 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delete();
+                confirmDelete();
             }
         });
 
@@ -138,7 +142,17 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
         finish();
     }
 
-    private void delete(){
+    private void confirmDelete() {
+        new SimpleAlertDialogSupportFragment.Builder()
+                .setMessage(R.string.msg_confirm_file_entry_delete)
+                .setPositiveButton(android.R.string.ok)
+                .setNegativeButton(android.R.string.cancel)
+                .setRequestCode(DIALOG_REQUEST_CODE_DELETE)
+                .create()
+                .show(getSupportFragmentManager(), "dialog");
+    }
+
+    private void delete() {
         FileEntry entry = getFileEntryFromScreen();
         entry.id = mFileEntry.id;
         new FileEntryDao(this).delete(entry);
@@ -147,7 +161,7 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
 
     private FileEntry getFileEntryFromScreen() {
         FileEntry entry;
-        if(null == mFileEntry){
+        if (null == mFileEntry) {
             entry = new FileEntry();
         } else {
             entry = mFileEntry;
@@ -169,4 +183,16 @@ public class DetailActivity extends Activity implements InstallTask.InstallListe
 
         InstallUtils.delegateInstall(this, apkPath);
     }
+
+    @Override
+    public void onDialogPositiveButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+        if (requestCode == DIALOG_REQUEST_CODE_DELETE) {
+            delete();
+        }
+    }
+
+    @Override
+    public void onDialogNegativeButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+    }
+
 }
