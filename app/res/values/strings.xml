@@ -18,6 +18,7 @@
     <string name="label_version">Version</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">Are you sure to delete this entry? This cannot be undone.</string>
+    <string name="msg_confirm_file_entry_finish">Are you sure to discard changes?</string>
     <string name="pref_category_general">General</string>
     <string name="pref_category_general_title_admin_password">Administrator\'s Password</string>
     <string name="pref_category_version">Version information</string>

@@ -47,6 +47,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
     private static final String DEFAULT_URL = "https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";
     private static final int DIALOG_REQUEST_CODE_DELETE = 1;
+    private static final int DIALOG_REQUEST_CODE_FINISH = 2;
     private FileEntry mFileEntry;
 
     @Override
@@ -97,9 +98,14 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            confirmFinish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        confirmFinish();
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -182,17 +188,32 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
 
     private void delete() {
         FileEntry entry = getFileEntryFromScreen();
-        entry.id = mFileEntry.id;
+        if (mFileEntry == null) {
+            return;
+        }
+        mFileEntry.copyMetaDataTo(entry);
         new FileEntryDao(this).delete(entry);
         finish();
     }
 
+    private void confirmFinish() {
+        if (!contentChanged()) {
+            finish();
+            return;
+        }
+        new SimpleAlertDialogSupportFragment.Builder()
+                .setMessage(R.string.msg_confirm_file_entry_finish)
+                .setPositiveButton(android.R.string.ok)
+                .setNegativeButton(android.R.string.cancel)
+                .setRequestCode(DIALOG_REQUEST_CODE_FINISH)
+                .create()
+                .show(getSupportFragmentManager(), "dialog");
+    }
+
     private FileEntry getFileEntryFromScreen() {
-        FileEntry entry;
-        if (null == mFileEntry) {
-            entry = new FileEntry();
-        } else {
-            entry = mFileEntry;
+        FileEntry entry = new FileEntry();
+        if (null != mFileEntry) {
+            mFileEntry.copyMetaDataTo(entry);
         }
         entry.url = ((EditText) findViewById(R.id.url)).getText().toString();
         entry.name = ((EditText) findViewById(R.id.name)).getText().toString();
@@ -200,6 +221,15 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         entry.basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
 
         return entry;
+    }
+
+    private boolean contentChanged() {
+        FileEntry before = mFileEntry;
+        FileEntry after = getFileEntryFromScreen();
+        if (before == null) {
+            before = new FileEntry();
+        }
+        return !before.contentEqualsTo(after);
     }
 
     @Override
@@ -214,8 +244,13 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
 
     @Override
     public void onDialogPositiveButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
-        if (requestCode == DIALOG_REQUEST_CODE_DELETE) {
-            delete();
+        switch (requestCode) {
+            case DIALOG_REQUEST_CODE_DELETE:
+                delete();
+                break;
+            case DIALOG_REQUEST_CODE_FINISH:
+                finish();
+                break;
         }
     }
 
