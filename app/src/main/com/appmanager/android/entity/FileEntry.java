@@ -126,4 +126,17 @@ public class FileEntry implements Parcelable {
         return s1.equals(s2);
     }
 
+
+    @Override
+    public String toString() {
+        return "FileEntry{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", basicAuthUser='" + basicAuthUser + '\'' +
+                ", basicAuthPassword='" + basicAuthPassword + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
+    }
 }
