@@ -175,10 +175,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         }
 
         Toast.makeText(this, "Installing: " + entry.url, Toast.LENGTH_LONG).show();
-        InstallTask task = new InstallTask(this);
-        if (!TextUtils.isEmpty(entry.basicAuthUser) && !TextUtils.isEmpty(entry.basicAuthPassword)) {
-            task.setBasicAuth(entry.basicAuthUser, entry.basicAuthPassword);
-        }
+        InstallTask task = new InstallTask(this, entry);
         task.setListener(this);
         task.execute(entry.url);
     }

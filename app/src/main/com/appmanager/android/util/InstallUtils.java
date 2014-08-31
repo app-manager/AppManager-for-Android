@@ -39,6 +39,7 @@ public class InstallUtils {
      */
     public static void delegateInstall(final Context context, final String apkPath) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(Uri.fromFile(new File(apkPath)), "application/vnd.android.package-archive");
         context.startActivity(intent);
     }

@@ -43,7 +43,7 @@ public class FileEntryDao {
         try {
             db = helper.getReadableDatabase();
             cursor = db.query("file_entries", new String[]{
-                    "id", "name", "url", "basic_auth_user", "basic_auth_password", "created_at", "updated_at",
+                    "id", "name", "url", "basic_auth_user", "basic_auth_password", "created_at", "updated_at", "header_last_modified", "header_etag", "header_content_length",
             }, null, null, null, null, "id asc", null);
             if (cursor != null) {
                 for (boolean hasNext = cursor.moveToFirst(); hasNext; hasNext = cursor.moveToNext()) {
@@ -56,6 +56,9 @@ public class FileEntryDao {
                     entity.basicAuthPassword = cursor.getString(index++);
                     entity.createdAt = cursor.getString(index++);
                     entity.updatedAt = cursor.getString(index++);
+                    entity.headerLastModified = cursor.getString(index++);
+                    entity.headerEtag = cursor.getString(index++);
+                    entity.headerContentLength = cursor.getString(index++);
                     result.add(entity);
                 }
             }
@@ -86,7 +89,7 @@ public class FileEntryDao {
             sb.append(" basic_auth_user, ");
             sb.append(" basic_auth_password, ");
             sb.append(" created_at, ");
-            sb.append(" updated_at ");
+            sb.append(" updated_at");
             sb.append(") VALUES (");
             sb.append(" ?, "); // name
             sb.append(" ?, "); // url
@@ -126,7 +129,6 @@ public class FileEntryDao {
             return;
         }
         SQLiteDatabase db = null;
-        SQLiteStatement statement = null;
         try {
             DbHelper helper = new DbHelper(getContext());
             db = helper.getWritableDatabase();
@@ -138,6 +140,28 @@ public class FileEntryDao {
             value.put("basic_auth_password", entity.basicAuthPassword);
             value.put("created_at", entity.createdAt);
             value.put("updated_at", entity.updatedAt); // 中身が入っているのかは見てない(=p)
+
+            db.update("file_entries", value, "id = ?", new String[]{String.valueOf(entity.id)});
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
+
+    public void updateHeader(final FileEntry entity) {
+        if (entity == null && 0 == entity.id) {
+            return;
+        }
+        SQLiteDatabase db = null;
+        try {
+            DbHelper helper = new DbHelper(getContext());
+            db = helper.getWritableDatabase();
+
+            ContentValues value = new ContentValues();
+            value.put("header_last_modified", entity.headerLastModified);
+            value.put("header_etag", entity.headerEtag);
+            value.put("header_content_length", entity.headerContentLength);
 
             db.update("file_entries", value, "id = ?", new String[]{String.valueOf(entity.id)});
         } finally {
