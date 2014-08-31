@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appmanager.android"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+    package="com.appmanager.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,10 +12,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.appmanager.android.app.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,19 +24,26 @@
         </activity>
         <activity
             android:name="com.appmanager.android.app.DetailActivity"
-            android:label="@string/activity_title_add_app"
-            >
+            android:label="@string/activity_title_add_app">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="import-to-appmanager" />
+
+                <data
+                    android:host="import-to-appmanager"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="import-to-appmanager" />
+
+                <data
+                    android:host="import-to-appmanager"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity
@@ -51,6 +52,7 @@
         <activity
             android:name="com.appmanager.android.app.AboutActivity"
             android:label="@string/activity_title_about" />
+
         <receiver
             android:name=".receiver.BootCompleteReceiver"
             android:enabled="true">
