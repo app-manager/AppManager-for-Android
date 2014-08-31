@@ -43,6 +43,9 @@ public class FileEntry implements Parcelable {
     public String basicAuthPassword;
     public String createdAt;
     public String updatedAt;
+    public String headerLastModified;
+    public String headerEtag;
+    public String headerContentLength;
 
 
     /**
@@ -64,6 +67,9 @@ public class FileEntry implements Parcelable {
         basicAuthPassword = source.readString();
         createdAt = source.readString();
         updatedAt = source.readString();
+        headerLastModified = source.readString();
+        headerEtag = source.readString();
+        headerContentLength = source.readString();
     }
 
     @Override
@@ -80,6 +86,9 @@ public class FileEntry implements Parcelable {
         dest.writeString(basicAuthPassword);
         dest.writeString(createdAt);
         dest.writeString(updatedAt);
+        dest.writeString(headerLastModified);
+        dest.writeString(headerEtag);
+        dest.writeString(headerContentLength);
     }
 
     /**
@@ -126,7 +135,6 @@ public class FileEntry implements Parcelable {
         return s1.equals(s2);
     }
 
-
     @Override
     public String toString() {
         return "FileEntry{" +
@@ -137,6 +145,9 @@ public class FileEntry implements Parcelable {
                 ", basicAuthPassword='" + basicAuthPassword + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
+                ", headerLastModified='" + headerLastModified + '\'' +
+                ", headerEtag='" + headerEtag + '\'' +
+                ", headerContentLength='" + headerContentLength + '\'' +
                 '}';
     }
 }

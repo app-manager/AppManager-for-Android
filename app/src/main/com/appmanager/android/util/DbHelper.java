@@ -40,7 +40,10 @@ public class DbHelper extends SQLiteOpenHelper {
             sb.append(" basic_auth_user text, ");
             sb.append(" basic_auth_password text, ");
             sb.append(" created_at datetime not null, ");
-            sb.append(" updated_at datetime not null");
+            sb.append(" updated_at datetime not null, ");
+            sb.append(" header_last_modified text, ");
+            sb.append(" header_etag text, ");
+            sb.append(" header_content_length text");
             sb.append(");");
             sqLiteDatabase.execSQL(sb.toString());
             sqLiteDatabase.setTransactionSuccessful();

@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.util.AppDownloader;
 
 import java.io.IOException;
@@ -33,28 +34,22 @@ public class InstallTask extends AsyncTask<String, Void, String> {
     private static final String TAG = InstallTask.class.getSimpleName();
     private InstallListener mListener;
     private Activity mActivity;
-    private String mBasicAuthUser;
-    private String mBasicAuthPassword;
+    private FileEntry mFileEntry;
 
     public void setListener(final InstallListener listener) {
         mListener = listener;
     }
 
-    public InstallTask(final Activity activity) {
+    public InstallTask(final Activity activity, FileEntry entry) {
         mActivity = activity;
-    }
-
-    public void setBasicAuth(final String user, final String password) {
-        mBasicAuthUser = user;
-        mBasicAuthPassword = password;
+        mFileEntry = entry;
     }
 
     @Override
     protected String doInBackground(final String... strings) {
         String strUrl = strings[0];
         try {
-            AppDownloader downloader = new AppDownloader(strUrl);
-            downloader.setBasicAuth(mBasicAuthUser, mBasicAuthPassword);
+            AppDownloader downloader = new AppDownloader(mActivity, mFileEntry);
             return downloader.download(mActivity);
         } catch (IllegalArgumentException e) {
             Log.e(TAG, "Failed to download", e);
