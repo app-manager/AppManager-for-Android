@@ -65,6 +65,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
             if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
                 mFileEntry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
                 if (mFileEntry != null) {
+                    setTitle(R.string.activity_title_edit_app);
                     restoreValues(mFileEntry);
                 }
             } else {

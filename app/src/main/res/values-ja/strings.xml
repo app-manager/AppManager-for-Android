@@ -3,6 +3,7 @@
 
     <string name="app_name">AppManager</string>
     <string name="activity_title_add_app">アプリを追加</string>
+    <string name="activity_title_edit_app">アプリを編集</string>
     <string name="activity_title_settings">設定</string>
     <string name="activity_title_about">このアプリについて</string>
     <string name="action_reload">再読み込み</string>
