@@ -13,8 +13,14 @@
         android:title="@string/action_add_app" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_help"
         android:orderInCategory="120"
+        android:showAsAction="never"
+        android:title="@string/action_help" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="130"
         android:showAsAction="never"
         android:title="@string/action_settings" />
 

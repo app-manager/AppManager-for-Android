@@ -4,10 +4,12 @@
     <string name="app_name">AppManager</string>
     <string name="activity_title_add_app">アプリを追加</string>
     <string name="activity_title_edit_app">アプリを編集</string>
+    <string name="activity_title_help">ヘルプ</string>
     <string name="activity_title_settings">設定</string>
     <string name="activity_title_about">このアプリについて</string>
     <string name="action_reload">再読み込み</string>
     <string name="action_add_app">@string/activity_title_add_app</string>
+    <string name="action_help">@string/activity_title_help</string>
     <string name="action_settings">@string/activity_title_settings</string>
     <string name="label_name">名前</string>
     <string name="label_url">URL</string>
@@ -17,10 +19,36 @@
     <string name="label_download">ダウンロード</string>
     <string name="label_save">保存</string>
     <string name="label_delete">削除</string>
+    <string name="label_im_tester">私はテスターです</string>
+    <string name="label_im_developer">私は開発者です</string>
+    <string name="label_tester">テスター</string>
+    <string name="label_developer">開発者</string>
     <string name="label_version">バージョン</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
+    <string name="msg_help_header">AppManagerをご利用いただきありがとうございます。あなたはテスターですか？開発者ですか？</string>
+    <string name="msg_help_testers"><![CDATA[AppManagerはα版/β版アプリのダウンローダ/インストーラです。
+
+\n\nもしあなたがURLつきのメールを受け取っていて、このアプリを使うように指示されていたら、そのメールのリンクをタップしてこのアプリでリンクを開いてください。
+
+\n\nもしメールを受け取っていない場合は、「アプリを追加」をタップしてフォームに必要な情報を入力してください。
+
+\n\nその後、ダウンロードボタンをタップするとアプリのダウンロードが始まります。アプリが正常にダウンロードできた場合は、ダイアログが開き、インストールしてよいか尋ねられます。]]></string>
+    <string name="msg_help_developers"><![CDATA[AppManagerはα版/β版アプリのダウンローダ/インストーラです。
+アプリをテスターに配布するには、まずあなたが所有しているサーバにAPKファイルを配置してください。
+
+\n\nテスターにはこのアプリをインストールしてもらい、「提供元不明のアプリ」をインストールできるように設定してもらってください。
+
+\n\nそして、配置したAPKのURL、BASIC認証をかけている場合は必要なユーザ名/パスワードをユーザに連絡します。
+
+\n\nこれらの情報は、所定のフォーマットでURLを記載しておくと、Intentによりリンクからこのアプリのアプリ追加画面を開くことができますので、ご活用ください。
+\n例えば、
+\nhttp://example.com/path/to/awsomeapp.apk
+\nというURLにアプリを配置し、ユーザ名 user、パスワード pass でBASIC認証をかけ、 GreatApp という名前で登録する場合は以下のように記述します。
+\n\nhttp://user:pass@import-to-appmanager/example.com/path/to/awesomeapp.apk#GreatApp
+\n\nもしくはホスト名を変えて以下のようにします。
+\n\nhttp://user:pass@app-manager.github.io/example.com/path/to/awesomeapp.apk#GreatApp]]></string>
     <string name="pref_category_general">全般</string>
     <string name="pref_category_general_title_admin_password">管理者パスワード</string>
     <string name="pref_category_version">バージョン情報</string>

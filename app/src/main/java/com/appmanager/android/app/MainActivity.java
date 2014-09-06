@@ -68,6 +68,9 @@ public class MainActivity extends Activity
             case R.id.action_add_app:
                 addApp();
                 break;
+            case R.id.action_help:
+                startActivity(new Intent(this, HelpActivity.class));
+                break;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
