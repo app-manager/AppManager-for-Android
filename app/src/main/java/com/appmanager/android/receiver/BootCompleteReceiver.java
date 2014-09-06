@@ -24,7 +24,10 @@ import android.util.Log;
 import com.appmanager.android.service.CheckAndInstallService;
 
 /**
- * Created by maimuzo on 2014/08/30.
+ * Receiver for boot completion event.
+ *
+ * @author maimuzo
+ * @since 2014/08/30
  */
 public class BootCompleteReceiver extends BroadcastReceiver {
     private static final String TAG = "BootCompleteReceiver";

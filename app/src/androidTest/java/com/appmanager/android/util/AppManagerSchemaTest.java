@@ -7,7 +7,8 @@ import junit.framework.TestCase;
 import java.net.URLEncoder;
 
 /**
- * Created by maimuzo on 2014/08/30.
+ * @author maimuzo
+ * @since 2014/08/30
  */
 public class AppManagerSchemaTest extends TestCase {
     private static final String APK_PATH = "github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";

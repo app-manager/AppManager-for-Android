@@ -28,6 +28,11 @@ import com.appmanager.android.util.DbHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data access object for {@linkplain com.appmanager.android.entity.FileEntry}.
+ *
+ * @author Soichiro Kashima
+ */
 public class FileEntryDao {
     private Context mContext;
 

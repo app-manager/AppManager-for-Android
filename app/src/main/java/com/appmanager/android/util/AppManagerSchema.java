@@ -42,7 +42,9 @@ import java.net.URLEncoder;
  * <category android:name="android.intent.category.BROWSABLE" />
  * <data android:scheme="https" android:host="import-to-appmanager" />
  * </intent-filter>
- * Created by maimuzo on 2014/08/30.
+ *
+ * @author maimuzo
+ * @since 2014/08/30
  */
 public class AppManagerSchema {
     private static final String TAG = "AppManagerSchema";

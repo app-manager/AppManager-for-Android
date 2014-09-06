@@ -26,6 +26,9 @@ import com.appmanager.android.entity.FileEntry;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Soichiro Kashima
+ */
 public class FileEntryValidator {
 
     private static final String NEWLINE = "\n";

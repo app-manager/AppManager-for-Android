@@ -27,6 +27,9 @@ import com.appmanager.android.entity.FileEntry;
 
 import java.util.List;
 
+/**
+ * @author Soichiro Kashima
+ */
 public class FileEntryAdapter extends ArrayAdapter<FileEntry> {
 
     public interface OnClickListener {

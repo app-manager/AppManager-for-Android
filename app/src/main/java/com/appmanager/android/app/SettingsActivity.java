@@ -26,6 +26,9 @@ import android.view.MenuItem;
 import com.appmanager.android.R;
 import com.appmanager.android.util.VersionUtils;
 
+/**
+ * @author Soichiro Kashima
+ */
 public class SettingsActivity extends PreferenceActivity {
 
     @Override

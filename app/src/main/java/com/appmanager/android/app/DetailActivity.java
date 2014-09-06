@@ -42,6 +42,9 @@ import com.appmanager.android.validator.FileEntryValidator;
 import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
+/**
+ * @author Soichiro Kashima
+ */
 public class DetailActivity extends FragmentActivity implements InstallTask.InstallListener,
         SimpleAlertDialog.OnClickListener {
 

@@ -22,17 +22,27 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
+/**
+ * Utilities for handling app versions.
+ *
+ * @author Soichiro Kashima
+ */
 public class VersionUtils {
 
     /**
      * Check if the API level is higher than Honeycomb(API level 11).
      *
-     * @return
+     * @return true if API level is equal to or higher than 11
      */
     public static boolean isEqualOrHigherThanHoneycomb() {
         return isEqualOrHigherThan(Build.VERSION_CODES.HONEYCOMB);
     }
 
+    /**
+     * Check if the API level is higher than Ice cream sandwich(API level 14).
+     *
+     * @return true if API level is equal to or higher than 14
+     */
     public static boolean isEqualOrHigherThanIceCreamSandwich() {
         return isEqualOrHigherThan(Build.VERSION_CODES.ICE_CREAM_SANDWICH);
     }

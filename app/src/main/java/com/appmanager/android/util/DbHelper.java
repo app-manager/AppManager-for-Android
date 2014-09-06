@@ -20,6 +20,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * @author Soichiro Kashima
+ */
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "app_manager.db";
     private static final int DB_VERSION = 1;

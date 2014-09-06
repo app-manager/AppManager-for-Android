@@ -37,6 +37,9 @@ import java.util.List;
 
 /**
  * Download app(apk) synchronously.
+ *
+ * @author Soichiro Kashima
+ * @author maimuzo
  */
 public class AppDownloader {
     private static final String TAG = "AppDownloader";

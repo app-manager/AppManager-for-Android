@@ -20,6 +20,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+/**
+ * @author Soichiro Kashima
+ */
 public class FileEntry implements Parcelable {
 
     /**
@@ -46,7 +49,6 @@ public class FileEntry implements Parcelable {
     public String headerLastModified;
     public String headerEtag;
     public String headerContentLength;
-
 
     /**
      * Default constructor for normal creation.

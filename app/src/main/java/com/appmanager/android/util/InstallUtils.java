@@ -22,6 +22,11 @@ import android.net.Uri;
 
 import java.io.File;
 
+/**
+ * Utilities for handling app installation.
+ *
+ * @author Soichiro Kashima
+ */
 public class InstallUtils {
 
     /**

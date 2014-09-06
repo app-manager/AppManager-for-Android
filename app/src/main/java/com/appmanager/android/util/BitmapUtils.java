@@ -28,6 +28,11 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+/**
+ * Utilities for handling bitmaps.
+ *
+ * @author Soichiro Kashima
+ */
 public class BitmapUtils {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

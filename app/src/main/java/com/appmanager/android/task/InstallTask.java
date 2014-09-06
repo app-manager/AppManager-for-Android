@@ -25,6 +25,11 @@ import com.appmanager.android.util.AppDownloader;
 
 import java.io.IOException;
 
+/**
+ * Async task for downloading/installing app.
+ *
+ * @author Soichiro Kashima
+ */
 public class InstallTask extends AsyncTask<String, Void, String> {
 
     public interface InstallListener {

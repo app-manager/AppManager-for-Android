@@ -28,7 +28,8 @@ import com.appmanager.android.util.InstallUtils;
 import java.util.List;
 
 /**
- * Created by maimuzo on 2014/08/30.
+ * @author maimuzo
+ * @since 2014/08/30
  */
 public class CheckAndInstallService extends IntentService {
     private static final String TAG = "CheckAndInstallService";
