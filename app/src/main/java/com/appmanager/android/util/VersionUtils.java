@@ -26,7 +26,7 @@ public class VersionUtils {
 
     /**
      * Check if the API level is higher than Honeycomb(API level 11).
-     * 
+     *
      * @return
      */
     public static boolean isEqualOrHigherThanHoneycomb() {
@@ -43,7 +43,7 @@ public class VersionUtils {
 
     /**
      * Returns the version string to the preference.
-     * 
+     *
      * @return version name
      */
     public static String getVersion(final Context context) {

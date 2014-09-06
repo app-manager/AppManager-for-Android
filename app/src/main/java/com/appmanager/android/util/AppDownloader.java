@@ -26,8 +26,6 @@ import android.util.Log;
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -89,7 +87,7 @@ public class AppDownloader {
         final String apkName = extractFileName(mFileEntry.url);
         File outputFile = new File(dir, apkName);
         c.connect();
-        try{
+        try {
             updateHeaderValues(c);
 
             FileOutputStream fos = new FileOutputStream(outputFile);
@@ -110,13 +108,13 @@ public class AppDownloader {
         return outputFile.getAbsolutePath();
     }
 
-    private String extractFileName(String url){
+    private String extractFileName(String url) {
         Uri uri = Uri.parse(url);
         List<String> paths = uri.getPathSegments();
         return paths.get(paths.size() - 1);
     }
 
-    private void updateHeaderValues(HttpURLConnection c){
+    private void updateHeaderValues(HttpURLConnection c) {
         mFileEntry.headerLastModified = c.getHeaderField("Last-Modified");
         mFileEntry.headerEtag = c.getHeaderField("Etag");
         mFileEntry.headerContentLength = c.getHeaderField("Content-Length");
@@ -131,11 +129,11 @@ public class AppDownloader {
 
     /**
      * check APK was updated
-     *
+     * <p/>
      * 1. check Last-Modified
      * 2. check Etag if it is not found Last-Modified
      * 3. check Content-Length if is not found Etag
-     *
+     * <p/>
      * this alg not use If-Modified-Since
      *
      * @param baseContext Base context to access app local storage
@@ -152,7 +150,7 @@ public class AppDownloader {
 
         c.setRequestMethod("HEAD");
         c.connect();
-        try{
+        try {
             String lastModified = c.getHeaderField("Last-Modified");
             String etag = c.getHeaderField("Etag");
             String contentLength = c.getHeaderField("Content-Length");
@@ -162,7 +160,7 @@ public class AppDownloader {
             Log.d(TAG, "etag: " + etag);
             Log.d(TAG, "contentLength: " + contentLength);
 
-            if(!TextUtils.isEmpty(fe.headerLastModified)) {
+            if (!TextUtils.isEmpty(fe.headerLastModified)) {
                 if (fe.headerLastModified.equals(lastModified)) {
                     // 比較対象が存在して同じなら更新の必要なし
                     return false;
@@ -170,7 +168,7 @@ public class AppDownloader {
                     // 同じURLで前回は拾えたはずなのでLastModifiedはあるはず。内容が異なるということは更新されている
                     return true;
                 }
-            } else if(!TextUtils.isEmpty(fe.headerEtag)) {
+            } else if (!TextUtils.isEmpty(fe.headerEtag)) {
                 if (fe.headerEtag.equals(etag)) {
                     // 比較対象が存在して同じなら更新の必要なし
                     return false;
@@ -178,8 +176,8 @@ public class AppDownloader {
                     // 同じURLで前回は拾えたはずなのでEtagはあるはず。内容が異なるということは更新されている
                     return true;
                 }
-            } else if(!TextUtils.isEmpty(fe.headerContentLength)){
-                if(fe.headerContentLength.equals(contentLength)){
+            } else if (!TextUtils.isEmpty(fe.headerContentLength)) {
+                if (fe.headerContentLength.equals(contentLength)) {
                     // 比較対象が存在して同じなら更新の必要なし
                     return false;
                 } else {

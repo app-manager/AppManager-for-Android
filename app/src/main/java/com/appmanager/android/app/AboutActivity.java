@@ -16,10 +16,6 @@
 
 package com.appmanager.android.app;
 
-import com.appmanager.android.R;
-import com.appmanager.android.util.BitmapUtils;
-import com.appmanager.android.util.VersionUtils;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -28,6 +24,10 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.appmanager.android.R;
+import com.appmanager.android.util.BitmapUtils;
+import com.appmanager.android.util.VersionUtils;
 
 public class AboutActivity extends Activity {
 

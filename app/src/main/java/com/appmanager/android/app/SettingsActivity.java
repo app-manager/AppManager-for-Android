@@ -16,15 +16,15 @@
 
 package com.appmanager.android.app;
 
-import com.appmanager.android.R;
-import com.appmanager.android.util.VersionUtils;
-
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
+
+import com.appmanager.android.R;
+import com.appmanager.android.util.VersionUtils;
 
 public class SettingsActivity extends PreferenceActivity {
 

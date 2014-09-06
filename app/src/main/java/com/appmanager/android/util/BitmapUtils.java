@@ -45,7 +45,7 @@ public class BitmapUtils {
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public static Drawable getDensityOptimizedIconSizeDrawable(final Context myAppContext,
-            final Context targetPackageContext, final int resId) {
+                                                               final Context targetPackageContext, final int resId) {
         int adjustedResId = resId;
         if (adjustedResId <= 0) {
             adjustedResId = android.R.drawable.sym_def_app_icon;

@@ -96,19 +96,19 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     }
 
     @Override
-    protected void onNewIntent(Intent intent){
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         Intent intent = getIntent();
-        if(AppManagerSchema.canDecode(intent)){
+        if (AppManagerSchema.canDecode(intent)) {
             FileEntry fe = AppManagerSchema.decode(intent.getData().toString());
-            if(null != fe){
+            if (null != fe) {
                 restoreValues(fe);
             }
         }
@@ -127,7 +127,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         confirmFinish();
     }
 
-    private void restoreValues(FileEntry entry){
+    private void restoreValues(FileEntry entry) {
         String name = TextUtils.isEmpty(entry.name) ? extractNameFromUrl(entry) : entry.name;
         ((EditText) findViewById(R.id.name)).setText(name);
         ((EditText) findViewById(R.id.url)).setText(entry.url);

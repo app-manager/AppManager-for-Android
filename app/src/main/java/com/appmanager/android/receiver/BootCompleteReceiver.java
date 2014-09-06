@@ -28,6 +28,7 @@ import com.appmanager.android.service.CheckAndInstallService;
  */
 public class BootCompleteReceiver extends BroadcastReceiver {
     private static final String TAG = "BootCompleteReceiver";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "start BootCompleteReceiver. this will call CheckAndInstallService.");

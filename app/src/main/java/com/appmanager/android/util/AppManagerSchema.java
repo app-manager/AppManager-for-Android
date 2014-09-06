@@ -24,31 +24,30 @@ import android.util.Log;
 import com.appmanager.android.entity.FileEntry;
 
 import java.net.URLEncoder;
-import java.util.List;
 
 /**
  * an original schema for importing from email or hyper-link.
- *
+ * <p/>
  * Note: need to add intent filter to Activity Section in AndroidManifest.xml
- *
+ * <p/>
  * <intent-filter>
- *     <action android:name="android.intent.action.VIEW" />
- *     <category android:name="android.intent.category.DEFAULT" />
- *     <category android:name="android.intent.category.BROWSABLE" />
- *     <data android:scheme="http" android:host="import-to-appmanager" />
+ * <action android:name="android.intent.action.VIEW" />
+ * <category android:name="android.intent.category.DEFAULT" />
+ * <category android:name="android.intent.category.BROWSABLE" />
+ * <data android:scheme="http" android:host="import-to-appmanager" />
  * </intent-filter>
  * <intent-filter>
- *     <action android:name="android.intent.action.VIEW" />
- *     <category android:name="android.intent.category.DEFAULT" />
- *     <category android:name="android.intent.category.BROWSABLE" />
- *     <data android:scheme="https" android:host="import-to-appmanager" />
+ * <action android:name="android.intent.action.VIEW" />
+ * <category android:name="android.intent.category.DEFAULT" />
+ * <category android:name="android.intent.category.BROWSABLE" />
+ * <data android:scheme="https" android:host="import-to-appmanager" />
  * </intent-filter>
  * Created by maimuzo on 2014/08/30.
  */
 public class AppManagerSchema {
     private static final String TAG = "AppManagerSchema";
     public static final String MAIN_SPECIAL_HOST = "import-to-appmanager";
-    public static final String[] SPECIAL_HOSTS = new String[] {
+    public static final String[] SPECIAL_HOSTS = new String[]{
             MAIN_SPECIAL_HOST,
             "app-manager.github.io",
     };
@@ -57,6 +56,7 @@ public class AppManagerSchema {
      * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
      * to
      * "https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true"
+     *
      * @param uri
      * @return decoded FileEntry, or null if it was not able to decode uri.
      */
@@ -67,17 +67,17 @@ public class AppManagerSchema {
             Uri encodedUri = Uri.parse(uri);
 
             String specialHost = encodedUri.getHost();
-            if(!matchesSpecialHosts(specialHost)){
+            if (!matchesSpecialHosts(specialHost)) {
                 throw new UnsupportedOperationException("host is not '" + getSpecialHostsList() + "'");
             }
             entry = new FileEntry();
             entry.name = encodedUri.getFragment(); // null if not include
             String userInfo = encodedUri.getUserInfo();
-            if(null != userInfo){
+            if (null != userInfo) {
                 String[] parts = userInfo.split(":");
                 String basicAuthUser = parts[0];
                 String basicAuthPassword = parts[1];
-                if(!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)){
+                if (!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)) {
                     entry.basicAuthUser = basicAuthUser;
                     entry.basicAuthPassword = basicAuthPassword;
                 }
@@ -89,7 +89,7 @@ public class AppManagerSchema {
             String host = encodedPath.substring(0, separatePoint);
             String path = encodedPath.substring(separatePoint + 1);
             String query = encodedUri.getQuery();
-            if(TextUtils.isEmpty(query)){
+            if (TextUtils.isEmpty(query)) {
                 entry.url = schema + "://" + host + path;
             } else {
                 entry.url = schema + "://" + host + path + "?" + query;
@@ -106,43 +106,44 @@ public class AppManagerSchema {
      * "https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true"
      * to
      * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
+     *
      * @param url
      * @param name
      * @param basicAuthUser
      * @param basicAuthPassword
      * @return encoded uri, or null if it was not able to encode url.
      */
-    public static String encode(String url, String name, String basicAuthUser, String basicAuthPassword){
+    public static String encode(String url, String name, String basicAuthUser, String basicAuthPassword) {
         // validate url
-        try{
+        try {
             Uri uri = Uri.parse(url);
             StringBuilder sb = new StringBuilder();
             sb.append(uri.getScheme()).append("://");
-            if(!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)){
+            if (!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)) {
                 sb.append(basicAuthUser).append(":").append(basicAuthPassword).append("@");
             }
             sb.append(MAIN_SPECIAL_HOST);
             sb.append("/").append(uri.getHost());
             sb.append(uri.getPath());
-            if(!TextUtils.isEmpty(uri.getEncodedQuery())){
+            if (!TextUtils.isEmpty(uri.getEncodedQuery())) {
                 sb.append("?").append(uri.getEncodedQuery());
             }
-            if(!TextUtils.isEmpty(name)){
+            if (!TextUtils.isEmpty(name)) {
                 sb.append("#").append(URLEncoder.encode(name, "UTF-8"));
             }
             return sb.toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
             return null;
         }
     }
 
-    public static boolean canDecode(Intent intent){
-        if (Intent.ACTION_VIEW.equals(intent.getAction())){
+    public static boolean canDecode(Intent intent) {
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
             String schema = uri.getScheme();
             for (String specialHost : SPECIAL_HOSTS) {
-                if(specialHost.equals(uri.getHost()) && ("http".equals(schema) || "https".equals(schema))){
+                if (specialHost.equals(uri.getHost()) && ("http".equals(schema) || "https".equals(schema))) {
                     return true;
                 }
             }

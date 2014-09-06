@@ -16,11 +16,6 @@
 
 package com.appmanager.android.app;
 
-import com.appmanager.android.R;
-import com.appmanager.android.adapter.FileEntryAdapter;
-import com.appmanager.android.dao.FileEntryDao;
-import com.appmanager.android.entity.FileEntry;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +23,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import com.appmanager.android.R;
+import com.appmanager.android.adapter.FileEntryAdapter;
+import com.appmanager.android.dao.FileEntryDao;
+import com.appmanager.android.entity.FileEntry;
 
 import java.util.List;
 

@@ -17,9 +17,7 @@
 package com.appmanager.android.service;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
 
 import com.appmanager.android.dao.FileEntryDao;
@@ -34,6 +32,7 @@ import java.util.List;
  */
 public class CheckAndInstallService extends IntentService {
     private static final String TAG = "CheckAndInstallService";
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
@@ -43,7 +42,7 @@ public class CheckAndInstallService extends IntentService {
         super(name);
     }
 
-    public CheckAndInstallService(){
+    public CheckAndInstallService() {
         super("CheckAndInstallService");
     }
 
@@ -52,19 +51,19 @@ public class CheckAndInstallService extends IntentService {
         Log.d(TAG, "update check started.");
         List<FileEntry> list = new FileEntryDao(this).findAll();
 
-        for(FileEntry fe: list){
+        for (FileEntry fe : list) {
             AppDownloader downloader = new AppDownloader(getApplicationContext(), fe);
-            try{
+            try {
                 Log.d(TAG, "check: " + fe.url);
                 // TODO: for debug
                 Log.d(TAG, "dump: " + fe.toString());
-                if(downloader.needToUpdate(getApplicationContext(), fe)){
+                if (downloader.needToUpdate(getApplicationContext(), fe)) {
                     Log.d(TAG, "downloading... " + fe.url);
                     String apkPath = downloader.download(getApplicationContext());
                     Log.d(TAG, "download complete. kick com.android.packageinstaller: " + fe.url);
                     InstallUtils.delegateInstall(this, apkPath);
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 Log.e(TAG, e.getMessage(), e);
             }
         }
