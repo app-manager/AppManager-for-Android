@@ -1,0 +1,5 @@
+<resources>
+
+    <integer name="button_animation_duration">300</integer>
+
+</resources>

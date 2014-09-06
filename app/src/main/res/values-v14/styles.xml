@@ -20,4 +20,8 @@
         <item name="android:src">@drawable/ic_action_overflow</item>
     </style>
 
+    <style name="AppButtonStyle" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button_normal</item>
+    </style>
+
 </resources>
