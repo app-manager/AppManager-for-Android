@@ -45,6 +45,26 @@
                     android:host="import-to-appmanager"
                     android:scheme="https" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app-manager.github.io"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app-manager.github.io"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.appmanager.android.app.SettingsActivity"

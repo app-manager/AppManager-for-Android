@@ -18,4 +18,4 @@ before_script:
     - chmod +x wait-for-emulator
     - ./wait-for-emulator
 script:
-    - TERM=dumb ./gradlew :app:assemble
+    - TERM=dumb ./gradlew :app:assemble :app:connectedAndroidTest

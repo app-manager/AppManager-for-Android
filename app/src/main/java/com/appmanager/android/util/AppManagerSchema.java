@@ -8,6 +8,7 @@ import android.util.Log;
 import com.appmanager.android.entity.FileEntry;
 
 import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * an original schema for importing from email or hyper-link.
@@ -30,7 +31,11 @@ import java.net.URLEncoder;
  */
 public class AppManagerSchema {
     private static final String TAG = "AppManagerSchema";
-    public static final String SPECIAL_HOST = "import-to-appmanager";
+    public static final String MAIN_SPECIAL_HOST = "import-to-appmanager";
+    public static final String[] SPECIAL_HOSTS = new String[] {
+            MAIN_SPECIAL_HOST,
+            "app-manager.github.io",
+    };
 
     /**
      * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
@@ -46,8 +51,8 @@ public class AppManagerSchema {
             Uri encodedUri = Uri.parse(uri);
 
             String specialHost = encodedUri.getHost();
-            if(!SPECIAL_HOST.equals(specialHost)){
-                throw new UnsupportedOperationException("host is not '" + SPECIAL_HOST + "'");
+            if(!matchesSpecialHosts(specialHost)){
+                throw new UnsupportedOperationException("host is not '" + getSpecialHostsList() + "'");
             }
             entry = new FileEntry();
             entry.name = encodedUri.getFragment(); // null if not include
@@ -100,7 +105,7 @@ public class AppManagerSchema {
             if(!TextUtils.isEmpty(basicAuthUser) && !TextUtils.isEmpty(basicAuthPassword)){
                 sb.append(basicAuthUser).append(":").append(basicAuthPassword).append("@");
             }
-            sb.append(SPECIAL_HOST);
+            sb.append(MAIN_SPECIAL_HOST);
             sb.append("/").append(uri.getHost());
             sb.append(uri.getPath());
             if(!TextUtils.isEmpty(uri.getEncodedQuery())){
@@ -120,10 +125,25 @@ public class AppManagerSchema {
         if (Intent.ACTION_VIEW.equals(intent.getAction())){
             Uri uri = intent.getData();
             String schema = uri.getScheme();
-            if(SPECIAL_HOST.equals(uri.getHost()) && ("http".equals(schema) || "https".equals(schema))){
+            for (String specialHost : SPECIAL_HOSTS) {
+                if(specialHost.equals(uri.getHost()) && ("http".equals(schema) || "https".equals(schema))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean matchesSpecialHosts(final String host) {
+        for (String specialHost : SPECIAL_HOSTS) {
+            if (specialHost.equals(host)) {
                 return true;
             }
         }
         return false;
+    }
+
+    private static String getSpecialHostsList() {
+        return TextUtils.join(", ", SPECIAL_HOSTS);
     }
 }
