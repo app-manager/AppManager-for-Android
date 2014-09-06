@@ -16,6 +16,9 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:windowContentOverlay">@null</item>
+        <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
     </style>
+
+    <style name="SimpleAlertDialogStyle" parent="Theme.SimpleAlertDialog.Light" />
 
 </resources>
