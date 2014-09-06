@@ -69,6 +69,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
                     restoreValues(mFileEntry);
                 }
             } else {
+                ((EditText) findViewById(R.id.name)).setText(extractNameFromUrl(DEFAULT_URL));
                 ((EditText) findViewById(R.id.url)).setText(DEFAULT_URL);
                 deleteButton.setEnabled(false);
             }
@@ -127,7 +128,8 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     }
 
     private void restoreValues(FileEntry entry){
-        ((EditText) findViewById(R.id.name)).setText(entry.name);
+        String name = TextUtils.isEmpty(entry.name) ? extractNameFromUrl(entry) : entry.name;
+        ((EditText) findViewById(R.id.name)).setText(name);
         ((EditText) findViewById(R.id.url)).setText(entry.url);
         ((EditText) findViewById(R.id.basicAuthUser)).setText(entry.basicAuthUser);
         ((EditText) findViewById(R.id.basicAuthPassword)).setText(entry.basicAuthPassword);
@@ -243,6 +245,18 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         entry.basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
 
         return entry;
+    }
+
+    private String extractNameFromUrl(FileEntry entry) {
+        return extractNameFromUrl(entry.url);
+    }
+
+    private String extractNameFromUrl(String entryUrl) {
+        if (TextUtils.isEmpty(entryUrl)) {
+            return "";
+        }
+        String url = entryUrl.contains("?") ? entryUrl.replaceAll("\\?.*$", "") : entryUrl;
+        return url.replaceAll("^.*/", "").replaceAll("\\.apk", "");
     }
 
     private boolean contentChanged() {
