@@ -33,4 +33,9 @@
         <item name="android:textColor">@color/button_text_accent</item>
     </style>
 
+    <style name="AppButtonStyle.Attention" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button_attention</item>
+        <item name="android:textColor">@color/button_text_accent</item>
+    </style>
+
 </resources>
