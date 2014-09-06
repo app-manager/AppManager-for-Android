@@ -13,6 +13,7 @@
     <string name="label_url">URL</string>
     <string name="label_basic_auth_user">BASIC認証ユーザ名(オプション)</string>
     <string name="label_basic_auth_password">BASIC認証パスワード(オプション)</string>
+    <string name="label_add_app_empty">+ アプリを追加</string>
     <string name="label_download">ダウンロード</string>
     <string name="label_save">保存</string>
     <string name="label_delete">削除</string>

@@ -23,7 +23,7 @@
         <Button
             android:id="@+id/add_app"
             style="@style/AppButtonStyle.Accent"
-            android:text="@string/action_add_app"
+            android:text="@string/label_add_app_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
