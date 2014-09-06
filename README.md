@@ -1,7 +1,7 @@
 AppManager for Android
 ===
 
-[![Build Status](https://travis-ci.org/ksoichiro/AppManager-for-Android.svg?branch=master)](https://travis-ci.org/ksoichiro/AppManager-for-Android)
+[![Build Status](https://travis-ci.org/app-manager/AppManager-for-Android.svg?branch=master)](https://travis-ci.org/app-manager/AppManager-for-Android)
 
 AppManager is the application to download and install the apps
 from outside the Google Play Store.
@@ -44,7 +44,7 @@ e.g.
 If you send an email with following URL,
 
 ```
-https://user:pass@import-to-appmanager/github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#appName
+https://user:pass@import-to-appmanager/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#appName
 ```
 
 ↓
@@ -55,7 +55,7 @@ AppManager will parse URL and set information for a new entry:
 Name: appName
 Basic Auth User: user
 Basic Auth Password: pass
-URL: https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true
+URL: https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true
 ```
 
 ## Developed By

@@ -46,7 +46,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         SimpleAlertDialog.OnClickListener {
 
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
-    private static final String DEFAULT_URL = "https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";
+    private static final String DEFAULT_URL = "https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";
     private static final int DIALOG_REQUEST_CODE_DELETE = 1;
     private static final int DIALOG_REQUEST_CODE_FINISH = 2;
     private FileEntry mFileEntry;

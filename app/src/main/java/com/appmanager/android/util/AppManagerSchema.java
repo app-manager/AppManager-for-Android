@@ -33,9 +33,9 @@ public class AppManagerSchema {
     public static final String SPECIAL_HOST = "import-to-appmanager";
 
     /**
-     * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
+     * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
      * to
-     * "https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true"
+     * "https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true"
      * @param uri
      * @return decoded FileEntry, or null if it was not able to decode uri.
      */
@@ -82,9 +82,9 @@ public class AppManagerSchema {
     }
 
     /**
-     * "https://github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true"
+     * "https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true"
      * to
-     * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/ksoichiro/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
+     * "https://{basicAuthUser}:{basicAuthPassword}@import-to-appmanager/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#{name}"
      * @param url
      * @param name
      * @param basicAuthUser
