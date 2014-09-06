@@ -1,7 +1,7 @@
 <resources>
 
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- API 14 theme customizations can go here. -->
+        <!-- API 16 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/AppActionBarStyle</item>
     </style>
 
@@ -12,6 +12,7 @@
 
     <style name="AppActionBarTitleTextStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">#ffffffff</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
 </resources>
