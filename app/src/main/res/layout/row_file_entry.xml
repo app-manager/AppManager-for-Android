@@ -8,15 +8,17 @@
 
     <TextView
         android:id="@+id/name"
+        style="@style/AppTextViewStyle.Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:maxLines="1"
         android:ellipsize="end"
-        android:text="Example" />
+        android:maxLines="1"
+        android:text="Example"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/url"
+        style="@style/AppTextViewStyle.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

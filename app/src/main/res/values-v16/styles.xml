@@ -5,6 +5,7 @@
         <item name="android:actionBarStyle">@style/AppActionBarStyle</item>
         <item name="android:actionOverflowButtonStyle">@style/AppActionOverflowButtonStyle</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_ab_back</item>
+        <item name="android:textViewStyle">@style/AppTextViewStyle</item>
     </style>
 
     <style name="AppActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
@@ -23,6 +24,18 @@
 
     <style name="AppButtonStyle" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/button_normal</item>
+    </style>
+
+    <style name="AppTextViewStyle" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="AppTextViewStyle.Normal" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="AppTextViewStyle.Light" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
 </resources>

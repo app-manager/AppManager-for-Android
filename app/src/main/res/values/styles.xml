@@ -24,6 +24,10 @@
         <item name="android:background">@drawable/button_normal</item>
     </style>
 
+    <style name="AppTextViewStyle" parent="android:Widget.TextView" />
+    <style name="AppTextViewStyle.Normal" parent="android:Widget.TextView" />
+    <style name="AppTextViewStyle.Light" parent="android:Widget.TextView" />
+
     <style name="SimpleAlertDialogStyle" parent="Theme.SimpleAlertDialog.Light" />
 
 </resources>

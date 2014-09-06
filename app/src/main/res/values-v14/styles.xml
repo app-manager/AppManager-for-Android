@@ -20,6 +20,10 @@
         <item name="android:src">@drawable/ic_action_overflow</item>
     </style>
 
+    <style name="AppTextViewStyle" parent="android:Widget.Holo.Light.TextView" />
+    <style name="AppTextViewStyle.Normal" parent="android:Widget.Holo.Light.TextView" />
+    <style name="AppTextViewStyle.Light" parent="android:Widget.Holo.Light.TextView" />
+
     <style name="AppButtonStyle" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/button_normal</item>
     </style>
