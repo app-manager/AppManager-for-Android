@@ -3,6 +3,7 @@
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 16 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/AppActionBarStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/AppActionOverflowButtonStyle</item>
     </style>
 
     <style name="AppActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
@@ -13,6 +14,10 @@
     <style name="AppActionBarTitleTextStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">#ffffffff</item>
         <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="AppActionOverflowButtonStyle" parent="android:Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_overflow</item>
     </style>
 
 </resources>
