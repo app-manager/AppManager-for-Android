@@ -1,9 +1,10 @@
 <resources>
 
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!-- API 16 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/AppActionBarStyle</item>
         <item name="android:actionOverflowButtonStyle">@style/AppActionOverflowButtonStyle</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back</item>
     </style>
 
     <style name="AppActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
