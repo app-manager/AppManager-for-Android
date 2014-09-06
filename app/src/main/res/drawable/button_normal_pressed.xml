@@ -13,6 +13,12 @@
 
             <corners android:radius="@dimen/button_radius" />
 
+            <padding
+                android:bottom="@dimen/button_padding_vertical"
+                android:left="@dimen/button_padding_horizontal"
+                android:right="@dimen/button_padding_horizontal"
+                android:top="@dimen/button_padding_vertical" />
+
         </shape>
     </item>
 

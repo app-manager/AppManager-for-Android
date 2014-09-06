@@ -26,6 +26,11 @@
         <item name="android:background">@drawable/button_normal</item>
     </style>
 
+    <style name="AppButtonStyle.Accent" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button_accent</item>
+        <item name="android:textColor">@color/button_text_accent</item>
+    </style>
+
     <style name="AppTextViewStyle" parent="android:Widget.Holo.Light.TextView">
         <item name="android:fontFamily">sans-serif-light</item>
     </style>

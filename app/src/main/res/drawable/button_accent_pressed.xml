@@ -9,7 +9,7 @@
         android:top="@dimen/button_margin">
         <shape>
 
-            <solid android:color="#ffeeeeee" />
+            <solid android:color="#ffc2185b" />
 
             <corners android:radius="@dimen/button_radius" />
 

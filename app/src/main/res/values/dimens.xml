@@ -6,5 +6,7 @@
 
     <dimen name="button_margin">4dp</dimen>
     <dimen name="button_radius">4dp</dimen>
+    <dimen name="button_padding_horizontal">16dp</dimen>
+    <dimen name="button_padding_vertical">8dp</dimen>
 
 </resources>

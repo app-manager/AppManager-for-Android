@@ -32,17 +32,23 @@ import android.widget.ListView;
 import java.util.List;
 
 public class MainActivity extends Activity
-    implements FileEntryAdapter.OnClickListener {
+        implements FileEntryAdapter.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.add_app).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addApp();
+            }
+        });
         loadFileEntries();
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         loadFileEntries();
     }
@@ -60,7 +66,7 @@ public class MainActivity extends Activity
                 loadFileEntries();
                 break;
             case R.id.action_add_app:
-                startActivity(new Intent(this, DetailActivity.class));
+                addApp();
                 break;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -75,9 +81,20 @@ public class MainActivity extends Activity
             return;
         }
         List<FileEntry> list = new FileEntryDao(this).findAll();
+        if (list.size() == 0) {
+            findViewById(R.id.empty).setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.empty).setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+        }
         FileEntryAdapter adapter = new FileEntryAdapter(this, list);
         adapter.setOnClickListener(this);
         listView.setAdapter(adapter);
+    }
+
+    private void addApp() {
+        startActivity(new Intent(this, DetailActivity.class));
     }
 
     @Override
