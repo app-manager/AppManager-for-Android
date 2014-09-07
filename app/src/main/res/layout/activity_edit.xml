@@ -1,83 +1,88 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".app.DetailActivity">
 
-    <TextView
-        style="@style/AppTextViewStyle.DetailHeader"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_name" />
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLines="1" />
+        <TextView
+            style="@style/AppTextViewStyle.DetailHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_name" />
 
-    <TextView
-        style="@style/AppTextViewStyle.DetailHeader"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_url" />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textUri"
-        android:maxLines="1" />
+        <TextView
+            style="@style/AppTextViewStyle.DetailHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_url" />
 
-    <TextView
-        style="@style/AppTextViewStyle.DetailHeader"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_basic_auth_user" />
+        <EditText
+            android:id="@+id/url"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri"
+            android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/basicAuthUser"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLines="1" />
+        <TextView
+            style="@style/AppTextViewStyle.DetailHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_basic_auth_user" />
 
-    <TextView
-        style="@style/AppTextViewStyle.DetailHeader"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_basic_auth_password" />
+        <EditText
+            android:id="@+id/basicAuthUser"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/basicAuthPassword"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text|textPassword"
-        android:maxLines="1" />
+        <TextView
+            style="@style/AppTextViewStyle.DetailHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_basic_auth_password" />
 
-    <Button
-        android:id="@+id/install"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_install" />
+        <EditText
+            android:id="@+id/basicAuthPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textPassword"
+            android:maxLines="1" />
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_save" />
+        <Button
+            android:id="@+id/install"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_install" />
 
-    <Button
-        android:id="@+id/delete"
-        style="@style/AppButtonStyle.Attention"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_delete" />
-</LinearLayout>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_save" />
+
+        <Button
+            android:id="@+id/delete"
+            style="@style/AppButtonStyle.Attention"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_delete" />
+    </LinearLayout>
+</ScrollView>
