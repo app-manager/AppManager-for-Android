@@ -17,11 +17,13 @@
 package com.appmanager.android.app;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.appmanager.android.R;
 import com.appmanager.android.util.VersionUtils;
@@ -29,48 +31,52 @@ import com.appmanager.android.util.VersionUtils;
 /**
  * @author Soichiro Kashima
  */
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends FragmentActivity {
+
+    private static final String PREF_KEY_ADMIN_PASSWORD = "admin_password";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+        setupActionBar();
+        findViewById(R.id.set_admin_password).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setAdminPassword();
+            }
+        });
+        findViewById(R.id.show_version).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
+            }
+        });
+    }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    private void setupActionBar() {
         if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
-            setPreferencesHoneycomb();
-        } else {
-            setPreferencesGingerbread();
+            ActionBar ab = getActionBar();
+            if (ab == null) {
+                return;
+            }
+            if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
+                ab.setHomeButtonEnabled(true);
+            }
+            ab.setDisplayHomeAsUpEnabled(true);
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem menu) {
-        if (menu.getItemId() == android.R.id.home) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
-            return true;
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private void setPreferencesHoneycomb() {
-        if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
-            getActionBar().setHomeButtonEnabled(true);
-        }
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        SettingsFragment fragment = new SettingsFragment();
-        getFragmentManager().beginTransaction().replace(android.R.id.content,
-                fragment).commit();
+    private void setAdminPassword() {
     }
 
-    private void setPreferencesGingerbread() {
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class SettingsFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(final Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.prefs);
-        }
-    }
 }
