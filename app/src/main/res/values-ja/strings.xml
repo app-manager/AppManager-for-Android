@@ -21,16 +21,13 @@
     <string name="label_download">ダウンロード</string>
     <string name="label_save">保存</string>
     <string name="label_delete">削除</string>
-    <string name="label_im_tester">私はテスターです</string>
-    <string name="label_im_developer">私は開発者です</string>
-    <string name="label_tester">テスター</string>
-    <string name="label_developer">開発者</string>
+    <string name="label_for_testers">テスターの方へ</string>
+    <string name="label_for_developers">開発者の方へ</string>
     <string name="label_version">バージョン</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
-    <string name="msg_help_header">AppManagerをご利用いただきありがとうございます。あなたはテスターですか？開発者ですか？</string>
-    <string name="msg_help_testers"><![CDATA[AppManagerはα版/β版アプリのダウンローダ/インストーラです。
+    <string name="msg_help_testers"><![CDATA[AppManagerをご利用いただきありがとうございます。AppManagerはα版/β版アプリのダウンローダ/インストーラです。
 
 \n\nもしあなたがURLつきのメールを受け取っていて、このアプリを使うように指示されていたら、そのメールのリンクをタップしてこのアプリでリンクを開いてください。
 

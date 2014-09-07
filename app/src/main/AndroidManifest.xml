@@ -74,6 +74,12 @@
             android:name="com.appmanager.android.app.HelpActivity"
             android:label="@string/activity_title_help" />
         <activity
+            android:name="com.appmanager.android.app.HelpTesterActivity"
+            android:label="@string/activity_title_help" />
+        <activity
+            android:name="com.appmanager.android.app.HelpDeveloperActivity"
+            android:label="@string/activity_title_help" />
+        <activity
             android:name="com.appmanager.android.app.SettingsActivity"
             android:label="@string/activity_title_settings" />
         <activity

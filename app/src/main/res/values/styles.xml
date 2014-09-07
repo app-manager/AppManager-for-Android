@@ -34,8 +34,18 @@
         <item name="android:textColor">@color/button_text_accent</item>
     </style>
 
+    <style name="AppButtonStyle.List" parent="AppButtonStyle">
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:background">@drawable/selectable_background_list</item>
+        <item name="android:textColor">@color/text_list</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
     <style name="AppTextViewStyle" parent="android:Widget.TextView" />
+
     <style name="AppTextViewStyle.Normal" parent="android:Widget.TextView" />
+
     <style name="AppTextViewStyle.Light" parent="android:Widget.TextView" />
 
     <style name="SimpleAlertDialogStyle" parent="Theme.SimpleAlertDialog.Light" />

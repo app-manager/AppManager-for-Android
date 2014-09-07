@@ -18,12 +18,10 @@ package com.appmanager.android.app;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.appmanager.android.R;
 import com.appmanager.android.util.VersionUtils;
@@ -31,25 +29,13 @@ import com.appmanager.android.util.VersionUtils;
 /**
  * @author Soichiro Kashima
  */
-public class HelpActivity extends FragmentActivity {
+public class HelpDeveloperActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_help_developer);
         setupActionBar();
-        findViewById(R.id.tester).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HelpActivity.this, HelpTesterActivity.class));
-            }
-        });
-        findViewById(R.id.developer).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HelpActivity.this, HelpDeveloperActivity.class));
-            }
-        });
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
