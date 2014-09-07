@@ -130,6 +130,45 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
         ((TextView) findViewById(R.id.basicAuthPassword)).setText(entry.basicAuthPassword);
     }
 
+    @Override
+    protected FileEntry getFileEntryFromScreen() {
+        FileEntry entry = new FileEntry();
+        if (null != mFileEntry) {
+            mFileEntry.copyMetaDataTo(entry);
+        }
+        entry.url = ((TextView) findViewById(R.id.url)).getText().toString();
+        entry.name = ((TextView) findViewById(R.id.name)).getText().toString();
+        entry.basicAuthUser = ((TextView) findViewById(R.id.basicAuthUser)).getText().toString();
+        entry.basicAuthPassword = ((TextView) findViewById(R.id.basicAuthPassword)).getText().toString();
+        return entry;
+    }
+
+    @Override
+    public void onComplete(final String apkPath) {
+        if (TextUtils.isEmpty(apkPath)) {
+            Toast.makeText(this, "Download failed!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        InstallUtils.delegateInstall(this, apkPath);
+    }
+
+    @Override
+    public void onDialogPositiveButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+        switch (requestCode) {
+            case DIALOG_REQUEST_CODE_DELETE:
+                delete();
+                break;
+            case DIALOG_REQUEST_CODE_FINISH:
+                finish();
+                break;
+        }
+    }
+
+    @Override
+    public void onDialogNegativeButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+    }
+
     private void save() {
         FileEntry entry = getFileEntryFromScreen();
         FileEntryValidator validator = new FileEntryValidator(this, entry);
@@ -181,19 +220,6 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
                 .show(getSupportFragmentManager(), "dialog");
     }
 
-    @Override
-    protected FileEntry getFileEntryFromScreen() {
-        FileEntry entry = new FileEntry();
-        if (null != mFileEntry) {
-            mFileEntry.copyMetaDataTo(entry);
-        }
-        entry.url = ((TextView) findViewById(R.id.url)).getText().toString();
-        entry.name = ((TextView) findViewById(R.id.name)).getText().toString();
-        entry.basicAuthUser = ((TextView) findViewById(R.id.basicAuthUser)).getText().toString();
-        entry.basicAuthPassword = ((TextView) findViewById(R.id.basicAuthPassword)).getText().toString();
-        return entry;
-    }
-
     private String extractNameFromUrl(String entryUrl) {
         if (TextUtils.isEmpty(entryUrl)) {
             return "";
@@ -209,32 +235,6 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
             before = new FileEntry();
         }
         return !before.contentEqualsTo(after);
-    }
-
-    @Override
-    public void onComplete(final String apkPath) {
-        if (TextUtils.isEmpty(apkPath)) {
-            Toast.makeText(this, "Download failed!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        InstallUtils.delegateInstall(this, apkPath);
-    }
-
-    @Override
-    public void onDialogPositiveButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
-        switch (requestCode) {
-            case DIALOG_REQUEST_CODE_DELETE:
-                delete();
-                break;
-            case DIALOG_REQUEST_CODE_FINISH:
-                finish();
-                break;
-        }
-    }
-
-    @Override
-    public void onDialogNegativeButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
     }
 
 }
