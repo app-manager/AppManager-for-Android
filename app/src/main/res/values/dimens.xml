@@ -13,4 +13,6 @@
     <dimen name="button_padding_horizontal">16dp</dimen>
     <dimen name="button_padding_vertical">8dp</dimen>
 
+    <dimen name="text_size_start">12sp</dimen>
+
 </resources>

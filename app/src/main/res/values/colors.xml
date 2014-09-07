@@ -5,5 +5,6 @@
     <color name="text_detail_header">#ff212121</color>
     <color name="text_detail_body">#ff424242</color>
     <color name="text_list_header">#ffe91e63</color>
+    <color name="text_start">#ff757575</color>
 
 </resources>

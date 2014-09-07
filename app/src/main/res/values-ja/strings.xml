@@ -28,6 +28,7 @@
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
+    <string name="msg_start"><![CDATA[AppManagerを使うと、認証が必要なサーバからアプリをインストールすることができます。 AppManager用のURLが書かれたメールを受け取っている場合は、メールのリンクからこのアプリを開いてください。そうでない場合は「アプリを追加」をタップして登録してください。]]></string>
     <string name="msg_help_testers"><![CDATA[AppManagerをご利用いただきありがとうございます。AppManagerはα版/β版アプリのダウンローダ/インストーラです。
 
 \n\nもしあなたがアプリのダウンロードURLつきのメールを受け取っていて、このアプリを使うように指示されている場合は、メールのURLをタップしてこのアプリで開いてください。

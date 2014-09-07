@@ -18,14 +18,31 @@
         android:id="@+id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/margin_standard"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_start" />
+
+        <TextView
+            style="@style/AppTextViewStyle.Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center"
+            android:text="@string/msg_start" />
 
         <Button
             android:id="@+id/add_app"
             style="@style/AppButtonStyle.Accent"
-            android:text="@string/label_add_app_empty"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:text="@string/label_add_app_empty" />
     </LinearLayout>
 
 </RelativeLayout>

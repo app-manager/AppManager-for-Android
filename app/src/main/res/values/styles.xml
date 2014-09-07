@@ -50,6 +50,11 @@
 
     <style name="SimpleAlertDialogStyle" parent="Theme.SimpleAlertDialog.Light" />
 
+    <style name="AppTextViewStyle.Start" parent="AppTextViewStyle.Light">
+        <item name="android:textColor">@color/text_start</item>
+        <item name="android:textSize">@dimen/text_size_start</item>
+    </style>
+
     <style name="AppTextViewStyle.DetailHeader" parent="AppTextViewStyle.Normal">
         <item name="android:textColor">@color/text_detail_header</item>
     </style>
