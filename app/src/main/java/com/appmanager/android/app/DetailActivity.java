@@ -76,8 +76,12 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail, menu);
+        inflateMenu(menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    protected void inflateMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail, menu);
     }
 
     @Override
