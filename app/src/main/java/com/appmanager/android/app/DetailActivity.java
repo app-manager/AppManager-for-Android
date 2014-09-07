@@ -28,7 +28,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,30 +45,31 @@ import com.appmanager.android.validator.FileEntryValidator;
 public class DetailActivity extends FragmentActivity implements InstallTask.InstallListener {
 
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
-    private FileEntry mFileEntry;
+    protected FileEntry mFileEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+    }
+
+    protected void init() {
         setContentView(R.layout.activity_detail);
         setupActionBar();
 
         mFileEntry = null;
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            if (intent.hasExtra(EXTRA_FILE_ENTRY)) {
-                mFileEntry = intent.getParcelableExtra(EXTRA_FILE_ENTRY);
-                if (mFileEntry != null && !TextUtils.isEmpty(mFileEntry.name)) {
-                    setTitle(mFileEntry.name);
-                    restoreValues(mFileEntry);
-                }
+        if (hasFileEntryInIntent()) {
+            mFileEntry = getFileEntryFromIntent();
+            if (mFileEntry != null && !TextUtils.isEmpty(mFileEntry.name)) {
+                setTitle(mFileEntry.name);
+                restoreValues(mFileEntry);
             }
         }
         findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirmDownload();
+                download();
             }
         });
     }
@@ -103,13 +103,13 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         InstallUtils.delegateInstall(this, apkPath);
     }
 
-    private void restoreValues(FileEntry entry) {
+    protected void restoreValues(FileEntry entry) {
         ((TextView) findViewById(R.id.name)).setText(entry.name);
         ((TextView) findViewById(R.id.url)).setText(entry.url);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private void setupActionBar() {
+    protected void setupActionBar() {
         if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
             ActionBar ab = getActionBar();
             if (ab == null) {
@@ -122,7 +122,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         }
     }
 
-    private void confirmDownload() {
+    protected void download() {
         FileEntry entry = getFileEntryFromScreen();
         FileEntryValidator validator = new FileEntryValidator(this, entry);
         if (!validator.isValid()) {
@@ -156,23 +156,30 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         task.execute(entry.url);
     }
 
-    private FileEntry getFileEntryFromScreen() {
+    protected FileEntry getFileEntryFromScreen() {
         FileEntry entry = new FileEntry();
         if (null != mFileEntry) {
             mFileEntry.copyMetaDataTo(entry);
         }
-        entry.url = ((EditText) findViewById(R.id.url)).getText().toString();
-        entry.name = ((EditText) findViewById(R.id.name)).getText().toString();
-        entry.basicAuthUser = ((EditText) findViewById(R.id.basicAuthUser)).getText().toString();
-        entry.basicAuthPassword = ((EditText) findViewById(R.id.basicAuthPassword)).getText().toString();
-
+        entry.url = ((TextView) findViewById(R.id.url)).getText().toString();
+        entry.name = ((TextView) findViewById(R.id.name)).getText().toString();
         return entry;
+    }
+
+    protected boolean hasFileEntryInIntent() {
+        Intent intent = getIntent();
+        return intent != null && intent.hasExtra(EXTRA_FILE_ENTRY);
+    }
+
+    protected FileEntry getFileEntryFromIntent() {
+        return getIntent().getParcelableExtra(EXTRA_FILE_ENTRY);
     }
 
     private void edit() {
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(EditActivity.EXTRA_FILE_ENTRY, mFileEntry);
         startActivity(intent);
+        finish();
     }
 
 }
