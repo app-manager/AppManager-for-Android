@@ -18,12 +18,12 @@ package com.appmanager.android.service;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.util.Log;
 
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.util.AppDownloader;
 import com.appmanager.android.util.InstallUtils;
+import com.appmanager.android.util.LogUtils;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ import java.util.List;
  * @since 2014/08/30
  */
 public class CheckAndInstallService extends IntentService {
-    private static final String TAG = "CheckAndInstallService";
+    private static final String TAG = CheckAndInstallService.class.getSimpleName();
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -49,25 +49,24 @@ public class CheckAndInstallService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d(TAG, "update check started.");
+        LogUtils.d(TAG, "update check started.");
         List<FileEntry> list = new FileEntryDao(this).findAll();
 
         for (FileEntry fe : list) {
             AppDownloader downloader = new AppDownloader(getApplicationContext(), fe);
             try {
-                Log.d(TAG, "check: " + fe.url);
-                // TODO: for debug
-                Log.d(TAG, "dump: " + fe.toString());
+                LogUtils.d(TAG, "check: " + fe.url);
+                LogUtils.d(TAG, "dump: " + fe.toString());
                 if (downloader.needToUpdate(getApplicationContext(), fe)) {
-                    Log.d(TAG, "downloading... " + fe.url);
+                    LogUtils.d(TAG, "downloading... " + fe.url);
                     String apkPath = downloader.download(getApplicationContext());
-                    Log.d(TAG, "download complete. kick com.android.packageinstaller: " + fe.url);
+                    LogUtils.d(TAG, "download complete. kick com.android.packageinstaller: " + fe.url);
                     InstallUtils.delegateInstall(this, apkPath);
                 }
             } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
+                LogUtils.e(TAG, e.getMessage(), e);
             }
         }
-        Log.d(TAG, "update check finished.");
+        LogUtils.d(TAG, "update check finished.");
     }
 }

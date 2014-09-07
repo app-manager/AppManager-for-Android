@@ -21,7 +21,6 @@ import android.content.ContextWrapper;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
@@ -122,10 +121,10 @@ public class AppDownloader {
         mFileEntry.headerEtag = c.getHeaderField("Etag");
         mFileEntry.headerContentLength = c.getHeaderField("Content-Length");
 
-        Log.d(TAG, "updateHeaderValues() is accessing by GET method to " + c.getURL().toString());
-        Log.d(TAG, "lastModified: " + mFileEntry.headerLastModified);
-        Log.d(TAG, "etag: " + mFileEntry.headerEtag);
-        Log.d(TAG, "contentLength: " + mFileEntry.headerContentLength);
+        LogUtils.d(TAG, "updateHeaderValues() is accessing by GET method to " + c.getURL().toString());
+        LogUtils.d(TAG, "lastModified: " + mFileEntry.headerLastModified);
+        LogUtils.d(TAG, "etag: " + mFileEntry.headerEtag);
+        LogUtils.d(TAG, "contentLength: " + mFileEntry.headerContentLength);
 
         new FileEntryDao(mContext).updateHeader(mFileEntry);
     }
@@ -158,10 +157,10 @@ public class AppDownloader {
             String etag = c.getHeaderField("Etag");
             String contentLength = c.getHeaderField("Content-Length");
 
-            Log.d(TAG, "needToUpdate() is accessing by HEAD method to " + fe.url);
-            Log.d(TAG, "lastModified: " + lastModified);
-            Log.d(TAG, "etag: " + etag);
-            Log.d(TAG, "contentLength: " + contentLength);
+            LogUtils.d(TAG, "needToUpdate() is accessing by HEAD method to " + fe.url);
+            LogUtils.d(TAG, "lastModified: " + lastModified);
+            LogUtils.d(TAG, "etag: " + etag);
+            LogUtils.d(TAG, "contentLength: " + contentLength);
 
             if (!TextUtils.isEmpty(fe.headerLastModified)) {
                 if (fe.headerLastModified.equals(lastModified)) {

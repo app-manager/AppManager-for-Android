@@ -18,10 +18,10 @@ package com.appmanager.android.task;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.util.AppDownloader;
+import com.appmanager.android.util.LogUtils;
 
 import java.io.IOException;
 
@@ -52,14 +52,13 @@ public class InstallTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(final String... strings) {
-        String strUrl = strings[0];
         try {
             AppDownloader downloader = new AppDownloader(mActivity, mFileEntry);
             return downloader.download(mActivity);
         } catch (IllegalArgumentException e) {
-            Log.e(TAG, "Failed to download", e);
+            LogUtils.e(TAG, "Failed to download", e);
         } catch (IOException e) {
-            Log.e(TAG, "Failed to download", e);
+            LogUtils.e(TAG, "Failed to download", e);
         }
         return null;
     }

@@ -19,7 +19,6 @@ package com.appmanager.android.util;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.appmanager.android.entity.FileEntry;
 
@@ -99,7 +98,7 @@ public class AppManagerSchema {
 
             return entry;
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
+            LogUtils.e(TAG, e.getMessage(), e);
             return null;
         }
     }
@@ -135,7 +134,7 @@ public class AppManagerSchema {
             }
             return sb.toString();
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
+            LogUtils.e(TAG, e.getMessage(), e);
             return null;
         }
     }
