@@ -70,10 +70,10 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
             ((EditText) findViewById(R.id.url)).setText(DEFAULT_URL);
             deleteButton.setEnabled(false);
         }
-        findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.install).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                download();
+                install();
             }
         });
         findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {

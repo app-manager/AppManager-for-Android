@@ -66,10 +66,10 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
                 restoreValues(mFileEntry);
             }
         }
-        findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.install).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                download();
+                install();
             }
         });
     }
@@ -122,7 +122,7 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
         }
     }
 
-    protected void download() {
+    protected void install() {
         FileEntry entry = getFileEntryFromScreen();
         FileEntryValidator validator = new FileEntryValidator(this, entry);
         if (!validator.isValid()) {

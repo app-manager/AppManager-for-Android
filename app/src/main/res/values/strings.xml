@@ -18,7 +18,7 @@
     <string name="label_basic_auth_user">Basic Auth User (Optional)</string>
     <string name="label_basic_auth_password">Basic Auth Password (Optional)</string>
     <string name="label_add_app_empty">+ Add new app</string>
-    <string name="label_download">Download</string>
+    <string name="label_install">Install</string>
     <string name="label_save">Save</string>
     <string name="label_delete">Delete</string>
     <string name="label_basic_usage">Basic usage</string>
@@ -35,7 +35,7 @@
 
 \n\nIf you have received emails with URL and have been told to use this app, tap the link and open with this app. If you don\'t have received any emails, tap \"Add new app\" button and fill in the forms.
 
-\n\nThen, tap \"Download\" button to download and install the app. If the app properly downloaded, a dialog will open that ask you to install the app.
+\n\nThen, tap \"Install\" button to download and install the app. If the app properly downloaded, a dialog will open that ask you to install the app.
 
 \n\nIf you don\'t allow installing app outside the Google Play, you cannot install apps. If you fail to install apps, open the device\'s settings screen, check \"Unknown sources\" to allow installing apps other than Google Play. \"Unknown sources\" setting is included \"Security\" category or something like that. It might be different depending on the OS version or device models.]]></string>
     <string name="msg_help_developers"><![CDATA[Thank you for using AppManager! AppManager is a alpha/beta app downloader and installer.

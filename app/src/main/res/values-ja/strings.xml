@@ -18,7 +18,7 @@
     <string name="label_basic_auth_user">BASIC認証ユーザ名(オプション)</string>
     <string name="label_basic_auth_password">BASIC認証パスワード(オプション)</string>
     <string name="label_add_app_empty">+ アプリを追加</string>
-    <string name="label_download">ダウンロード</string>
+    <string name="label_install">インストール</string>
     <string name="label_save">保存</string>
     <string name="label_delete">削除</string>
     <string name="label_basic_usage">基本的な使い方</string>
@@ -34,7 +34,7 @@
 
 \n\nもしメールを受け取っていない場合は、「アプリを追加」をタップしてフォームに必要な情報を入力してください。
 
-\n\nその後、「ダウンロード」ボタンをタップするとアプリのダウンロードが始まります。アプリが正常にダウンロードできた場合は、ダイアログが開き、インストールして良いか尋ねられます。
+\n\nその後、「インストール」ボタンをタップするとアプリのダウンロードが始まります。アプリが正常にダウンロードできた場合は、ダイアログが開き、インストールして良いか尋ねられます。
 
 \n\nGoogle Play以外からのアプリインストールを許可していない場合、アプリをインストールすることができません。インストールに失敗した場合は、端末の設定画面で「提供元不明のアプリ」にチェックを入れ、 Google Play以外からのアプリインストールを許可してください。OSバージョンや機種にもよりますが、「提供元不明のアプリ」の設定は「セキュリティ」などの項目に含まれています。]]></string>
     <string name="msg_help_developers"><![CDATA[AppManagerをご利用いただきありがとうございます。AppManagerはα版/β版アプリのダウンローダ/インストーラです。

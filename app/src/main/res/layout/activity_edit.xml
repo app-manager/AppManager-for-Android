@@ -63,10 +63,10 @@
         android:maxLines="1" />
 
     <Button
-        android:id="@+id/download"
+        android:id="@+id/install"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_download" />
+        android:text="@string/label_install" />
 
     <Button
         android:id="@+id/save"
