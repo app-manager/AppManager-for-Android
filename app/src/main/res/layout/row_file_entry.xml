@@ -3,8 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/selectable_background_list"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingBottom="@dimen/margin_short"
+    android:paddingLeft="@dimen/margin_standard"
+    android:paddingRight="@dimen/margin_standard"
+    android:paddingTop="@dimen/margin_short">
 
     <TextView
         android:id="@+id/name"
