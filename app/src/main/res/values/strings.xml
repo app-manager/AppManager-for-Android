@@ -61,7 +61,8 @@
 \n\nhttp://user:pass@app-manager.github.io/example.com/path/to/awesomeapp.apk#GreatApp]]></string>
     <string name="pref_category_general">General</string>
     <string name="pref_category_general_title_admin_password">Administrator\'s Password</string>
-    <string name="pref_category_version">Version information</string>
+    <string name="pref_category_version">App information</string>
+    <string name="pref_category_version_title_help">@string/activity_title_help</string>
     <string name="pref_category_version_title_about">About this app</string>
 
     <!-- Error messages -->

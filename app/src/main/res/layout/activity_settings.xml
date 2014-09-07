@@ -31,6 +31,15 @@
             android:text="@string/pref_category_version" />
 
         <Button
+            android:id="@+id/help"
+            style="@style/AppButtonStyle.List"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_category_version_title_help" />
+
+        <include layout="@layout/divider" />
+
+        <Button
             android:id="@+id/show_version"
             style="@style/AppButtonStyle.List"
             android:layout_width="match_parent"
