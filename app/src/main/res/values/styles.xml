@@ -20,6 +20,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:buttonStyle">@style/AppButtonStyle</item>
+        <item name="android:editTextStyle">@style/AppEditTextStyle</item>
         <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
     </style>
 
@@ -39,6 +40,10 @@
     <style name="AppButtonStyle" parent="android:Widget.Button">
         <item name="android:background">@drawable/button_normal</item>
         <item name="android:minHeight">@dimen/button_min_height</item>
+    </style>
+
+    <style name="AppEditTextStyle" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/textfield</item>
     </style>
 
     <style name="AppButtonStyle.Accent" parent="android:Widget.Button">

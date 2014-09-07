@@ -40,6 +40,10 @@
         <item name="android:textColor">@color/button_text_accent</item>
     </style>
 
+    <style name="AppEditTextStyle" parent="android:Widget.Holo.Light.EditText">
+        <item name="android:background">@drawable/textfield</item>
+    </style>
+
     <style name="AppTextViewStyle.DetailHeader" parent="AppTextViewStyle.Normal">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_detail_header</item>
