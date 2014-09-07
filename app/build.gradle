@@ -45,6 +45,16 @@ android {
         }
     }
 
+    productFlavors {
+        // Flavor to develop/test experimental feature.
+        development {
+            applicationId "com.appmanager.android.dev"
+        }
+        // Flavor to production release. This should be as stable as possible.
+        production {
+        }
+    }
+
     buildTypes {
         debug {
             zipAlign true

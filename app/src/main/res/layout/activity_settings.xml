@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/category_general"
             style="@style/AppTextViewStyle.ListHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appmanager.android.BuildConfig;
 import com.appmanager.android.R;
 import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
@@ -44,12 +45,19 @@ public class SettingsActivity extends BaseActivity implements SimpleAlertDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setupActionBar();
-        findViewById(R.id.set_admin_password).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setAdminPassword();
-            }
-        });
+
+        if (BuildConfig.FLAVOR.equals("development")) {
+            findViewById(R.id.set_admin_password).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setAdminPassword();
+                }
+            });
+        } else {
+            findViewById(R.id.category_general).setVisibility(View.GONE);
+            findViewById(R.id.set_admin_password).setVisibility(View.GONE);
+        }
+
         findViewById(R.id.show_version).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
