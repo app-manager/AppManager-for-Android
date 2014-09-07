@@ -97,7 +97,7 @@ public class MainActivity extends Activity
     }
 
     private void addApp() {
-        startActivity(new Intent(this, DetailActivity.class));
+        startActivity(new Intent(this, EditActivity.class));
     }
 
     @Override

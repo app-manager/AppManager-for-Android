@@ -48,4 +48,13 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="AppTextViewStyle.DetailHeader" parent="AppTextViewStyle.Normal">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_detail_header</item>
+    </style>
+
+    <style name="AppTextViewStyle.DetailBody" parent="AppTextViewStyle.Light">
+        <item name="android:textColor">@color/text_detail_body</item>
+    </style>
+
 </resources>

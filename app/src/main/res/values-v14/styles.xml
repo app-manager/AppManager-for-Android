@@ -21,7 +21,9 @@
     </style>
 
     <style name="AppTextViewStyle" parent="android:Widget.Holo.Light.TextView" />
+
     <style name="AppTextViewStyle.Normal" parent="android:Widget.Holo.Light.TextView" />
+
     <style name="AppTextViewStyle.Light" parent="android:Widget.Holo.Light.TextView" />
 
     <style name="AppButtonStyle" parent="android:Widget.Holo.Light.Button">
@@ -36,6 +38,15 @@
     <style name="AppButtonStyle.Attention" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/button_attention</item>
         <item name="android:textColor">@color/button_text_accent</item>
+    </style>
+
+    <style name="AppTextViewStyle.DetailHeader" parent="AppTextViewStyle.Normal">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_detail_header</item>
+    </style>
+
+    <style name="AppTextViewStyle.DetailBody" parent="AppTextViewStyle.Light">
+        <item name="android:textColor">@color/text_detail_body</item>
     </style>
 
 </resources>

@@ -11,69 +11,36 @@
     tools:context=".app.DetailActivity">
 
     <TextView
+        style="@style/AppTextViewStyle.DetailHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_name" />
 
-    <EditText
+    <TextView
         android:id="@+id/name"
+        style="@style/AppTextViewStyle.DetailBody"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLines="1" />
+        android:layout_marginTop="@dimen/margin_short" />
 
     <TextView
+        style="@style/AppTextViewStyle.DetailHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_short"
         android:text="@string/label_url" />
 
-    <EditText
+    <TextView
         android:id="@+id/url"
+        style="@style/AppTextViewStyle.DetailBody"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textUri"
-        android:maxLines="1" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_basic_auth_user" />
-
-    <EditText
-        android:id="@+id/basicAuthUser"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLines="1" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_basic_auth_password" />
-
-    <EditText
-        android:id="@+id/basicAuthPassword"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text|textPassword"
-        android:maxLines="1" />
+        android:layout_marginTop="@dimen/margin_short" />
 
     <Button
         android:id="@+id/download"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_short"
         android:text="@string/label_download" />
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_save" />
-
-    <Button
-        android:id="@+id/delete"
-        style="@style/AppButtonStyle.Attention"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_delete" />
 </LinearLayout>

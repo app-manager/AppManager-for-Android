@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">AppManager</string>
+    <string name="activity_title_detail">アプリ詳細</string>
     <string name="activity_title_add_app">アプリを追加</string>
     <string name="activity_title_edit_app">アプリを編集</string>
     <string name="activity_title_help">ヘルプ</string>
@@ -11,6 +12,7 @@
     <string name="action_add_app">@string/activity_title_add_app</string>
     <string name="action_help">@string/activity_title_help</string>
     <string name="action_settings">@string/activity_title_settings</string>
+    <string name="action_edit">編集</string>
     <string name="label_name">名前</string>
     <string name="label_url">URL</string>
     <string name="label_basic_auth_user">BASIC認証ユーザ名(オプション)</string>

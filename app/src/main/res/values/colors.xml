@@ -1,5 +1,7 @@
 <resources>
 
     <color name="background">#ffffffff</color>
+    <color name="text_detail_header">#ff212121</color>
+    <color name="text_detail_body">#ff424242</color>
 
 </resources>

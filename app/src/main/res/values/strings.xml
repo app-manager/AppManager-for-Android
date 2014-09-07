@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">AppManager</string>
+    <string name="activity_title_detail">Detail of the app</string>
     <string name="activity_title_add_app">Add new app</string>
     <string name="activity_title_edit_app">Edit the app</string>
     <string name="activity_title_help">Help</string>
@@ -11,6 +12,7 @@
     <string name="action_add_app">@string/activity_title_add_app</string>
     <string name="action_help">@string/activity_title_help</string>
     <string name="action_settings">@string/activity_title_settings</string>
+    <string name="action_edit">Edit</string>
     <string name="label_name">Name</string>
     <string name="label_url">URL</string>
     <string name="label_basic_auth_user">Basic Auth User (Optional)</string>

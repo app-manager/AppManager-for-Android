@@ -25,6 +25,9 @@
         </activity>
         <activity
             android:name="com.appmanager.android.app.DetailActivity"
+            android:label="@string/activity_title_detail"/>
+        <activity
+            android:name="com.appmanager.android.app.EditActivity"
             android:label="@string/activity_title_add_app">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
