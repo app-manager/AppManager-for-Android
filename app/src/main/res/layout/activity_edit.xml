@@ -11,6 +11,7 @@
     tools:context=".app.DetailActivity">
 
     <TextView
+        style="@style/AppTextViewStyle.DetailHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_name" />
@@ -23,6 +24,7 @@
         android:maxLines="1" />
 
     <TextView
+        style="@style/AppTextViewStyle.DetailHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_url" />
@@ -35,6 +37,7 @@
         android:maxLines="1" />
 
     <TextView
+        style="@style/AppTextViewStyle.DetailHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_basic_auth_user" />
@@ -47,6 +50,7 @@
         android:maxLines="1" />
 
     <TextView
+        style="@style/AppTextViewStyle.DetailHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/label_basic_auth_password" />
