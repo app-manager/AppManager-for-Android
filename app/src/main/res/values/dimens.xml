@@ -6,6 +6,7 @@
 
     <dimen name="margin_standard">16dp</dimen>
     <dimen name="margin_short">8dp</dimen>
+    <dimen name="margin_extra_short">4dp</dimen>
 
     <dimen name="button_margin">4dp</dimen>
     <dimen name="button_radius">4dp</dimen>

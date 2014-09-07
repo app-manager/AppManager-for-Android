@@ -21,6 +21,7 @@
     <string name="label_download">ダウンロード</string>
     <string name="label_save">保存</string>
     <string name="label_delete">削除</string>
+    <string name="label_basic_usage">基本的な使い方</string>
     <string name="label_for_testers">テスターの方へ</string>
     <string name="label_for_developers">開発者の方へ</string>
     <string name="label_version">バージョン</string>

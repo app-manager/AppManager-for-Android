@@ -21,6 +21,7 @@
     <string name="label_download">Download</string>
     <string name="label_save">Save</string>
     <string name="label_delete">Delete</string>
+    <string name="label_basic_usage">Basic usage</string>
     <string name="label_for_testers">For testers</string>
     <string name="label_for_developers">For developers</string>
     <string name="label_version">Version</string>

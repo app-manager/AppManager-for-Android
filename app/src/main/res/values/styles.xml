@@ -58,4 +58,12 @@
         <item name="android:textColor">@color/text_detail_body</item>
     </style>
 
+    <style name="AppTextViewStyle.ListHeader" parent="AppTextViewStyle.Normal">
+        <item name="android:textColor">@color/text_list_header</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/margin_standard</item>
+        <item name="android:paddingBottom">@dimen/margin_extra_short</item>
+    </style>
+
 </resources>

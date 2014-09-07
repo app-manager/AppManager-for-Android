@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            style="@style/AppTextViewStyle.ListHeader"
+            android:text="@string/label_basic_usage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/tester"
             style="@style/AppButtonStyle.List"
@@ -26,8 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_for_developers" />
-
-        <include layout="@layout/divider" />
     </LinearLayout>
 
 </ScrollView>
