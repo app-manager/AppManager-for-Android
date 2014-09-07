@@ -1,27 +1,28 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_reload"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_reload" />
+        android:title="@string/action_reload"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_add_app"
         android:orderInCategory="110"
-        android:showAsAction="never"
-        android:title="@string/action_add_app" />
+        android:title="@string/action_add_app"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_help"
         android:orderInCategory="120"
-        android:showAsAction="never"
-        android:title="@string/action_help" />
+        android:title="@string/action_help"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="130"
-        android:showAsAction="never"
-        android:title="@string/action_settings" />
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
 
 </menu>

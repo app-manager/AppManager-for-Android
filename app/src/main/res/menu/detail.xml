@@ -1,10 +1,11 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_edit"
         android:icon="@drawable/ic_action_edit"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_edit" />
+        android:title="@string/action_edit"
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -16,14 +16,10 @@
 
 package com.appmanager.android.app;
 
-import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,13 +32,12 @@ import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
 import com.appmanager.android.util.InstallUtils;
-import com.appmanager.android.util.VersionUtils;
 import com.appmanager.android.validator.FileEntryValidator;
 
 /**
  * @author Soichiro Kashima
  */
-public class DetailActivity extends FragmentActivity implements InstallTask.InstallListener {
+public class DetailActivity extends BaseActivity implements InstallTask.InstallListener {
 
     public static final String EXTRA_FILE_ENTRY = "fileEntry";
     protected FileEntry mFileEntry;
@@ -110,20 +105,6 @@ public class DetailActivity extends FragmentActivity implements InstallTask.Inst
     protected void restoreValues(FileEntry entry) {
         ((TextView) findViewById(R.id.name)).setText(entry.name);
         ((TextView) findViewById(R.id.url)).setText(entry.url);
-    }
-
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    protected void setupActionBar() {
-        if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
-            ActionBar ab = getActionBar();
-            if (ab == null) {
-                return;
-            }
-            if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
-                ab.setHomeButtonEnabled(true);
-            }
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     protected void install() {

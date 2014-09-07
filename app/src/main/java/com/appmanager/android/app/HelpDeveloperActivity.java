@@ -16,40 +16,21 @@
 
 package com.appmanager.android.app;
 
-import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 
 import com.appmanager.android.R;
-import com.appmanager.android.util.VersionUtils;
 
 /**
  * @author Soichiro Kashima
  */
-public class HelpDeveloperActivity extends FragmentActivity {
+public class HelpDeveloperActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_developer);
         setupActionBar();
-    }
-
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private void setupActionBar() {
-        if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
-            ActionBar ab = getActionBar();
-            if (ab == null) {
-                return;
-            }
-            if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
-                ab.setHomeButtonEnabled(true);
-            }
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override

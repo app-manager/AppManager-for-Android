@@ -16,9 +16,6 @@
 
 package com.appmanager.android.app;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
@@ -32,7 +29,7 @@ import com.appmanager.android.util.VersionUtils;
 /**
  * @author Soichiro Kashima
  */
-public class AboutActivity extends Activity {
+public class AboutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +52,6 @@ public class AboutActivity extends Activity {
             return true;
         }
         return false;
-    }
-
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private void setupActionBar() {
-        if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
-            getActionBar().setHomeButtonEnabled(true);
-            if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
-                getActionBar().setDisplayHomeAsUpEnabled(true);
-            }
-        }
     }
 
 }

@@ -16,14 +16,10 @@
 
 package com.appmanager.android.app;
 
-import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,14 +27,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appmanager.android.R;
-import com.appmanager.android.util.VersionUtils;
 import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
 /**
  * @author Soichiro Kashima
  */
-public class SettingsActivity extends FragmentActivity implements SimpleAlertDialog.OnClickListener,
+public class SettingsActivity extends BaseActivity implements SimpleAlertDialog.OnClickListener,
         SimpleAlertDialog.ViewProvider {
 
     private static final String PREF_KEY_ADMIN_PASSWORD = "admin_password";
@@ -61,20 +56,6 @@ public class SettingsActivity extends FragmentActivity implements SimpleAlertDia
                 startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
             }
         });
-    }
-
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private void setupActionBar() {
-        if (VersionUtils.isEqualOrHigherThanHoneycomb()) {
-            ActionBar ab = getActionBar();
-            if (ab == null) {
-                return;
-            }
-            if (VersionUtils.isEqualOrHigherThanIceCreamSandwich()) {
-                ab.setHomeButtonEnabled(true);
-            }
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override

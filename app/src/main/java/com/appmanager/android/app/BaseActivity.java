@@ -17,28 +17,31 @@
 package com.appmanager.android.app;
 
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 
 import com.appmanager.android.R;
 
 /**
  * @author Soichiro Kashima
  */
-public class HelpTesterActivity extends BaseActivity {
+public class BaseActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help_tester);
-        setupActionBar();
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setLogo(R.drawable.ic_logo);
+        }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
+    protected void setupActionBar() {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
-        return super.onOptionsItemSelected(item);
     }
 
 }
