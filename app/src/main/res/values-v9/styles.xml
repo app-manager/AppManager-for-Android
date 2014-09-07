@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/AppActionBarStyle</item>
+        <item name="actionOverflowButtonStyle">@style/AppActionOverflowButtonStyle</item>
+        <item name="homeAsUpIndicator">@drawable/ic_ab_back</item>
+        <item name="android:textColorHighlight">@color/edit_text_highlight</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right</item>
+        <item name="android:textSelectHandle">@drawable/text_select_handle</item>
+    </style>
+
+</resources>

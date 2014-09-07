@@ -6,6 +6,10 @@
         <item name="android:actionOverflowButtonStyle">@style/AppActionOverflowButtonStyle</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_ab_back</item>
         <item name="android:textViewStyle">@style/AppTextViewStyle</item>
+        <item name="android:textColorHighlight">@color/edit_text_highlight</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right</item>
+        <item name="android:textSelectHandle">@drawable/text_select_handle</item>
     </style>
 
     <style name="AppActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">

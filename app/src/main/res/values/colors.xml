@@ -7,5 +7,6 @@
     <color name="text_list_header">#ffe91e63</color>
     <color name="text_start">#ff757575</color>
     <color name="text_dialog_title">#ff3f51b5</color>
+    <color name="edit_text_highlight">#ff9fa8da</color>
 
 </resources>
