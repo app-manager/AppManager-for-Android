@@ -17,3 +17,5 @@ before_script:
     - emulator -avd test -no-skin -no-audio -no-window &
     - chmod +x wait-for-emulator
     - ./wait-for-emulator
+script:
+    - travis_retry ./gradlew assemble connectedAndroidTest
