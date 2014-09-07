@@ -32,6 +32,7 @@
     <string name="msg_password_not_matched">現在のパスワードが間違っています</string>
     <string name="msg_retyped_password_not_matched">新しいパスワードが再入力したものと一致しません</string>
     <string name="msg_about_am_description">認証機能つきのβ版アプリインストーラ</string>
+    <string name="msg_develop_as_open_source">AppManagerはOSSとして開発されています</string>
     <string name="msg_start"><![CDATA[AppManagerを使うと、認証が必要なサーバからアプリをインストールすることができます。 AppManager用のURLが書かれたメールを受け取っている場合は、メールのリンクからこのアプリを開いてください。そうでない場合は「アプリを追加」をタップして登録してください。]]></string>
     <string name="msg_help_testers"><![CDATA[AppManagerをご利用いただきありがとうございます。AppManagerはα版/β版アプリのダウンローダ/インストーラです。
 
