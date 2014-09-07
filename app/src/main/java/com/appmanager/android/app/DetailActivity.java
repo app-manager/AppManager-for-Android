@@ -135,7 +135,7 @@ public class DetailActivity extends BaseActivity implements InstallTask.InstallL
             new FileEntryDao(this).update(entry);
         }
 
-        Toast.makeText(this, "Installing: " + entry.url, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.msg_installing, Toast.LENGTH_LONG).show();
         InstallTask task = new InstallTask(this, entry);
         task.setListener(this);
         task.execute(entry.url);
