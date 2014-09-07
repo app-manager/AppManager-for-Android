@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AppManager</string>
     <string name="activity_title_detail">アプリ詳細</string>
     <string name="activity_title_add_app">アプリを追加</string>
     <string name="activity_title_edit_app">アプリを編集</string>
@@ -28,11 +27,11 @@
     <string name="label_new_password">新しいパスワード</string>
     <string name="label_retype_password">新しいパスワード(確認)</string>
     <string name="label_version">バージョン</string>
-    <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
     <string name="msg_password_not_matched">現在のパスワードが間違っています</string>
     <string name="msg_retyped_password_not_matched">新しいパスワードが再入力したものと一致しません</string>
+    <string name="msg_about_am_description">認証機能つきのβ版アプリインストーラ</string>
     <string name="msg_start"><![CDATA[AppManagerを使うと、認証が必要なサーバからアプリをインストールすることができます。 AppManager用のURLが書かれたメールを受け取っている場合は、メールのリンクからこのアプリを開いてください。そうでない場合は「アプリを追加」をタップして登録してください。]]></string>
     <string name="msg_help_testers"><![CDATA[AppManagerをご利用いただきありがとうございます。AppManagerはα版/β版アプリのダウンローダ/インストーラです。
 
