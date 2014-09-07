@@ -32,13 +32,15 @@
     <string name="msg_about_am_description">Application downloader/installer with authentication.</string>
     <string name="msg_help_testers"><![CDATA[Thank you for using AppManager! AppManager is a alpha/beta version app\'s downloader/installer.
 
-\n\nIf you have received emails with URL and have been told to use this app, tap the link and open with this app. If you don\'t have received any emails, tap Add new app button and fill in the forms.
+\n\nIf you have received emails with URL and have been told to use this app, tap the link and open with this app. If you don\'t have received any emails, tap \"Add new app\" button and fill in the forms.
 
-\n\nThen, tap download button to download and install the app. If the app properly downloaded, a dialog will open that ask you to install the app.]]></string>
-    <string name="msg_help_developers"><![CDATA[AppManager is a alpha/beta app downloader and installer.
+\n\nThen, tap \"Download\" button to download and install the app. If the app properly downloaded, a dialog will open that ask you to install the app.
+
+\n\nIf you don\'t allow installing app outside the Google Play, you cannot install apps. If you fail to install apps, open the device\'s settings screen, check \"Unknown sources\" to allow installing apps other than Google Play. \"Unknown sources\" setting is included \"Security\" category or something like that. It might be different depending on the OS version or device models.]]></string>
+    <string name="msg_help_developers"><![CDATA[Thank you for using AppManager! AppManager is a alpha/beta app downloader and installer.
 \nTo distribute apps for testers, at first, locate your APK file to your server.
 
-\n\nAnd the testers must install this app. Note that "Unknown sources" must be enabled to install alpha/beta apps using this app.
+\n\nAnd the testers must install this app. Note that \"Unknown sources\" must be enabled to install alpha/beta apps using this app.
 
 \n\nThen you tell the testers the information to install the app: URL for the APK file, basic auth user/password if needed.
 
