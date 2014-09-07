@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
     protected void init() {
         setContentView(R.layout.activity_edit);
         setupActionBar();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         mFileEntry = null;
 
@@ -89,7 +91,6 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
                 confirmDelete();
             }
         });
-
     }
 
     @Override
