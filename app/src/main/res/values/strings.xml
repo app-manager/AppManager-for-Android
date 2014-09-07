@@ -24,11 +24,16 @@
     <string name="label_basic_usage">Basic usage</string>
     <string name="label_for_testers">For testers</string>
     <string name="label_for_developers">For developers</string>
+    <string name="label_current_password">Current password</string>
+    <string name="label_new_password">New password</string>
+    <string name="label_retype_password">Retype password</string>
     <string name="label_version">Version</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_start"><![CDATA[AppManager can install app from servers that requires authentications. If you receive an email that includes URL for this app, open this app from the link. Otherwise, tap \"Add new app\" to start.]]></string>
     <string name="msg_confirm_file_entry_delete">Are you sure to delete this entry? This cannot be undone.</string>
     <string name="msg_confirm_file_entry_finish">Are you sure to discard changes?</string>
+    <string name="msg_password_not_matched">Current password is wrong</string>
+    <string name="msg_retyped_password_not_matched">Retyped password not matched</string>
     <string name="msg_about_fork_me_on_github">Fork me on GitHub!</string>
     <string name="msg_about_github_url">https://github.com/app-manager/AppManager-for-Android</string>
     <string name="msg_about_am_description">Application downloader/installer with authentication.</string>

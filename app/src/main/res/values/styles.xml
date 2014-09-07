@@ -48,7 +48,15 @@
 
     <style name="AppTextViewStyle.Light" parent="android:Widget.TextView" />
 
-    <style name="SimpleAlertDialogStyle" parent="Theme.SimpleAlertDialog.Light" />
+    <style name="SimpleAlertDialogStyle" parent="Theme.SimpleAlertDialog.Light">
+        <item name="sadTitleSeparatorBackground">@drawable/dialog_title_separator</item>
+        <item name="sadTitleSeparatorHeight">2dp</item>
+        <item name="sadTitleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
+    </style>
+
+    <style name="SimpleAlertDialogTitleTextStyle">
+        <item name="android:textColor">@color/text_dialog_title</item>
+    </style>
 
     <style name="AppTextViewStyle.Start" parent="AppTextViewStyle.Light">
         <item name="android:textColor">@color/text_start</item>

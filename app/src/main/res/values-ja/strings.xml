@@ -24,10 +24,15 @@
     <string name="label_basic_usage">基本的な使い方</string>
     <string name="label_for_testers">テスターの方へ</string>
     <string name="label_for_developers">開発者の方へ</string>
+    <string name="label_current_password">現在のパスワード</string>
+    <string name="label_new_password">新しいパスワード</string>
+    <string name="label_retype_password">新しいパスワード(確認)</string>
     <string name="label_version">バージョン</string>
     <string name="label_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
+    <string name="msg_password_not_matched">現在のパスワードが間違っています</string>
+    <string name="msg_retyped_password_not_matched">新しいパスワードが再入力したものと一致しません</string>
     <string name="msg_start"><![CDATA[AppManagerを使うと、認証が必要なサーバからアプリをインストールすることができます。 AppManager用のURLが書かれたメールを受け取っている場合は、メールのリンクからこのアプリを開いてください。そうでない場合は「アプリを追加」をタップして登録してください。]]></string>
     <string name="msg_help_testers"><![CDATA[AppManagerをご利用いただきありがとうございます。AppManagerはα版/β版アプリのダウンローダ/インストーラです。
 

@@ -19,21 +19,30 @@ package com.appmanager.android.app;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appmanager.android.R;
 import com.appmanager.android.util.VersionUtils;
+import com.simplealertdialog.SimpleAlertDialog;
+import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
 /**
  * @author Soichiro Kashima
  */
-public class SettingsActivity extends FragmentActivity {
+public class SettingsActivity extends FragmentActivity implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.ViewProvider {
 
     private static final String PREF_KEY_ADMIN_PASSWORD = "admin_password";
+    private static final int DIALOG_REQUEST_CODE_ADMIN_PASSWORD = 1;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -76,7 +85,46 @@ public class SettingsActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onDialogPositiveButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedPassword = prefs.getString(PREF_KEY_ADMIN_PASSWORD, "");
+        TextView currentPassword = (TextView) view.findViewById(R.id.current_password);
+        if (!savedPassword.equals(currentPassword.getText().toString())) {
+            Toast.makeText(this, R.string.msg_password_not_matched, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        TextView newPassword = (TextView) view.findViewById(R.id.new_password);
+        TextView retypePassword = (TextView) view.findViewById(R.id.retype_password);
+        if (!newPassword.getText().toString().equals(retypePassword.getText().toString())) {
+            Toast.makeText(this, R.string.msg_retyped_password_not_matched, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(PREF_KEY_ADMIN_PASSWORD, newPassword.getText().toString());
+        editor.commit();
+    }
+
+    @Override
+    public void onDialogNegativeButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+    }
+
+    @Override
+    public View onCreateView(SimpleAlertDialog simpleAlertDialog, int requestCode) {
+        if (requestCode == DIALOG_REQUEST_CODE_ADMIN_PASSWORD) {
+            return LayoutInflater.from(this).inflate(R.layout.dialog_admin_password, null);
+        }
+        return null;
+    }
+
     private void setAdminPassword() {
+        new SimpleAlertDialogSupportFragment.Builder()
+                .setUseView(true)
+                .setRequestCode(DIALOG_REQUEST_CODE_ADMIN_PASSWORD)
+                .setTitle(R.string.pref_category_general_title_admin_password)
+                .setPositiveButton(android.R.string.ok)
+                .setNegativeButton(android.R.string.cancel)
+                .create().show(getSupportFragmentManager(), "dialog");
     }
 
 }
