@@ -61,9 +61,10 @@ android {
     }
 
     project.ext.gitHash = "git rev-parse --short HEAD".execute().text.trim()
-    android.applicationVariants.all { variant ->
+    applicationVariants.all { variant ->
         def apk = variant.packageApplication.outputFile;
-        def newName = apk.name.replace(".apk", "-${variant.mergedFlavor.versionCode}-${variant.mergedFlavor.versionName}-${project.ext.gitHash}.apk");
+        def newName = apk.name.replace(".apk", "-${variant.mergedFlavor.versionCode}-${variant.mergedFlavor.versionName}-${project.ext.gitHash}.apk")
+            .replace("app-", "${defaultConfig.applicationId}-");
         if (variant.zipAlign) {
             variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace("-unaligned", ""));
         }
