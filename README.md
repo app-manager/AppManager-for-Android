@@ -6,6 +6,8 @@ AppManager for Android
 AppManager is the application to download and install the apps
 from outside the Google Play Store.
 
+  [![Download app from Google Play](app/en_generic_rgb_wo_60.png "Banner")](https://play.google.com/store/apps/details?id=com.appmanager.android)
+
 
 ## Why do you need this app?
 
