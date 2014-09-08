@@ -31,6 +31,7 @@ import com.appmanager.android.R;
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 import com.appmanager.android.task.InstallTask;
+import com.appmanager.android.util.AppDownloader;
 import com.appmanager.android.util.InstallUtils;
 import com.appmanager.android.validator.FileEntryValidator;
 
@@ -93,13 +94,19 @@ public class DetailActivity extends BaseActivity implements InstallTask.InstallL
     }
 
     @Override
-    public void onComplete(final String apkPath) {
-        if (TextUtils.isEmpty(apkPath)) {
+    public void onComplete(final AppDownloader.DownloadResponse response) {
+        if (response == null) {
+            Toast.makeText(this, R.string.error_download, Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!TextUtils.isEmpty(response.errorMessage)) {
+            Toast.makeText(this, response.errorMessage, Toast.LENGTH_SHORT).show();
+            return;
+        } else if (TextUtils.isEmpty(response.downloadedApkPath)) {
             Toast.makeText(this, R.string.error_download, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        InstallUtils.delegateInstall(this, apkPath);
+        InstallUtils.delegateInstall(this, response.downloadedApkPath);
     }
 
     protected void restoreValues(FileEntry entry) {

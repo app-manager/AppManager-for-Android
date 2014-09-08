@@ -18,6 +18,9 @@ package com.appmanager.android.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
@@ -59,9 +62,16 @@ public class CheckAndInstallService extends IntentService {
                 LogUtils.d(TAG, "dump: " + fe.toString());
                 if (downloader.needToUpdate(getApplicationContext(), fe)) {
                     LogUtils.d(TAG, "downloading... " + fe.url);
-                    String apkPath = downloader.download(getApplicationContext());
-                    LogUtils.d(TAG, "download complete. kick com.android.packageinstaller: " + fe.url);
-                    InstallUtils.delegateInstall(this, apkPath);
+                    AppDownloader.DownloadResponse response = downloader.download(getApplicationContext());
+                    if (response != null) {
+                        if (!TextUtils.isEmpty(response.errorMessage)) {
+                            Toast.makeText(getBaseContext(), response.errorMessage, Toast.LENGTH_SHORT).show();
+                            Log.e("AppManager", response.errorMessage);
+                        } else if (!TextUtils.isEmpty(response.downloadedApkPath)) {
+                            LogUtils.d(TAG, "download complete. kick com.android.packageinstaller: " + fe.url);
+                            InstallUtils.delegateInstall(this, response.downloadedApkPath);
+                        }
+                    }
                 }
             } catch (Exception e) {
                 LogUtils.e(TAG, e.getMessage(), e);

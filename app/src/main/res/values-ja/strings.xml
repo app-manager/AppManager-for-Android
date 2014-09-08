@@ -69,4 +69,7 @@
     <string name="error_file_entry_url_required">URLは必須です</string>
     <string name="error_no_connected_network">ネットワークに接続されていません</string>
     <string name="error_download">ダウンロードに失敗しました</string>
+    <string name="error_not_found">ファイルが見つかりません</string>
+    <string name="error_unauthorized">認証に失敗しました</string>
+    <string name="error_unknown_host">サーバが見つかりません</string>
 </resources>

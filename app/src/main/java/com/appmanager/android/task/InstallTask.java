@@ -30,10 +30,10 @@ import java.io.IOException;
  *
  * @author Soichiro Kashima
  */
-public class InstallTask extends AsyncTask<String, Void, String> {
+public class InstallTask extends AsyncTask<String, Void, AppDownloader.DownloadResponse> {
 
     public interface InstallListener {
-        void onComplete(final String apkPath);
+        void onComplete(final AppDownloader.DownloadResponse response);
     }
 
     private static final String TAG = InstallTask.class.getSimpleName();
@@ -51,23 +51,23 @@ public class InstallTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(final String... strings) {
+    protected AppDownloader.DownloadResponse doInBackground(final String... strings) {
         try {
             AppDownloader downloader = new AppDownloader(mActivity, mFileEntry);
             return downloader.download(mActivity);
         } catch (IllegalArgumentException e) {
-            LogUtils.e(TAG, "Failed to download", e);
+            LogUtils.e(TAG, "Failed to download: " + e.getMessage(), e);
         } catch (IOException e) {
-            LogUtils.e(TAG, "Failed to download", e);
+            LogUtils.e(TAG, "Failed to download: " + e.getMessage(), e);
         }
         return null;
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+    protected void onPostExecute(AppDownloader.DownloadResponse r) {
+        super.onPostExecute(r);
         if (mListener != null) {
-            mListener.onComplete(s);
+            mListener.onComplete(r);
         }
         mActivity.finish();
     }

@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Base64;
 
+import com.appmanager.android.R;
 import com.appmanager.android.dao.FileEntryDao;
 import com.appmanager.android.entity.FileEntry;
 
@@ -32,6 +33,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -47,6 +49,12 @@ public class AppDownloader {
     private URL mUrl;
     private FileEntry mFileEntry;
     private Context mContext;
+
+    public static class DownloadResponse {
+        public int responseCode;
+        public String errorMessage;
+        public String downloadedApkPath;
+    }
 
     /**
      * Create a new downloader with URL.<br />
@@ -70,26 +78,28 @@ public class AppDownloader {
      * @return Downloaded APK file path
      * @throws java.io.IOException If downloading failed
      */
-    public String download(final Context baseContext) throws IOException {
-        HttpURLConnection c = (HttpURLConnection) mUrl.openConnection();
-
-        // Optionally use basic auth
-        if (!TextUtils.isEmpty(mFileEntry.basicAuthUser) && !TextUtils.isEmpty(mFileEntry.basicAuthPassword)) {
-            c.setRequestProperty("Authorization",
-                    "Basic " + base64Encode(mFileEntry.basicAuthUser + ":" + mFileEntry.basicAuthPassword));
-        }
-
-        c.setRequestMethod("GET");
-        ContextWrapper cw = new ContextWrapper(baseContext);
-        File dir = new File(cw.getExternalFilesDir(null), BASE_DIR);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
-        final String apkName = extractFileName(mFileEntry.url);
-        File outputFile = new File(dir, apkName);
-        c.connect();
+    public DownloadResponse download(final Context baseContext) throws IOException {
+        DownloadResponse response = new DownloadResponse();
+        HttpURLConnection c = null;
         try {
+            c = (HttpURLConnection) mUrl.openConnection();
+
+            // Optionally use basic auth
+            if (!TextUtils.isEmpty(mFileEntry.basicAuthUser) && !TextUtils.isEmpty(mFileEntry.basicAuthPassword)) {
+                c.setRequestProperty("Authorization",
+                        "Basic " + base64Encode(mFileEntry.basicAuthUser + ":" + mFileEntry.basicAuthPassword));
+            }
+
+            c.setRequestMethod("GET");
+            ContextWrapper cw = new ContextWrapper(baseContext);
+            File dir = new File(cw.getExternalFilesDir(null), BASE_DIR);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            final String apkName = extractFileName(mFileEntry.url);
+            File outputFile = new File(dir, apkName);
+            c.connect();
             updateHeaderValues(c);
 
             FileOutputStream fos = new FileOutputStream(outputFile);
@@ -103,11 +113,32 @@ public class AppDownloader {
             fos.flush();
             fos.close();
             is.close();
+
+            response.downloadedApkPath = outputFile.getAbsolutePath();
+        } catch (UnknownHostException e) {
+            response.errorMessage = mContext.getString((R.string.error_unknown_host));
+        } catch (IOException e) {
+            if (c != null) {
+                response.responseCode = c.getResponseCode();
+                switch (response.responseCode) {
+                    case HttpURLConnection.HTTP_UNAUTHORIZED:
+                        response.errorMessage = mContext.getString(R.string.error_unauthorized);
+                        break;
+                    case HttpURLConnection.HTTP_NOT_FOUND:
+                        response.errorMessage = mContext.getString(R.string.error_not_found);
+                        break;
+                    default:
+                        response.errorMessage = mContext.getString(R.string.error_download);
+                        break;
+                }
+            }
         } finally {
-            c.disconnect();
+            if (c != null) {
+                c.disconnect();
+            }
         }
 
-        return outputFile.getAbsolutePath();
+        return response;
     }
 
     private String extractFileName(String url) {

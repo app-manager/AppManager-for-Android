@@ -71,4 +71,7 @@
     <string name="error_file_entry_url_required">URL is required.</string>
     <string name="error_no_connected_network">Not connected to network.</string>
     <string name="error_download">Download failed!</string>
+    <string name="error_not_found">File not found</string>
+    <string name="error_unauthorized">Unauthorized</string>
+    <string name="error_unknown_host">Unknown host</string>
 </resources>
