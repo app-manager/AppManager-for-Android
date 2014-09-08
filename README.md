@@ -10,7 +10,7 @@ from outside the Google Play Store.
 
 Testers can download your app from your server very easily!
 
-![Demo](app/demo.gif "Demo")]
+![Demo](app/demo.gif "Demo")
 
 
 ## Why do you need this app?
