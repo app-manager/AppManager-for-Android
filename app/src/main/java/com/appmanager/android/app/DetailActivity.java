@@ -95,7 +95,7 @@ public class DetailActivity extends BaseActivity implements InstallTask.InstallL
     @Override
     public void onComplete(final String apkPath) {
         if (TextUtils.isEmpty(apkPath)) {
-            Toast.makeText(this, "Download failed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_download, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -118,7 +118,7 @@ public class DetailActivity extends BaseActivity implements InstallTask.InstallL
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
-            Toast.makeText(this, "Not connected to network.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_no_connected_network, Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -69,4 +69,6 @@
     <!-- Error messages -->
     <string name="error_file_entry_empty">Invalid file entry.</string>
     <string name="error_file_entry_url_required">URL is required.</string>
+    <string name="error_no_connected_network">Not connected to network.</string>
+    <string name="error_download">Download failed!</string>
 </resources>
