@@ -3,6 +3,8 @@ AppManager for Android
 
 [![Build Status](https://travis-ci.org/app-manager/AppManager-for-Android.svg?branch=master)](https://travis-ci.org/app-manager/AppManager-for-Android)
 
+![](app/app.png "AppManager for Android")
+
 AppManager is the application to download and install the apps
 from outside the Google Play Store.
 
@@ -10,7 +12,7 @@ from outside the Google Play Store.
 
 Testers can download your app from your server very easily!
 
-![Demo](app/demo.gif "Demo")
+![](app/demo.gif "Demo")
 
 
 ## Why do you need this app?
