@@ -70,8 +70,8 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
                 restoreValues(mFileEntry);
             }
         } else {
-            ((EditText) findViewById(R.id.name)).setText(extractNameFromUrl(DEFAULT_URL));
-            ((EditText) findViewById(R.id.url)).setText(DEFAULT_URL);
+            ((TextView) findViewById(R.id.name)).setText(extractNameFromUrl(DEFAULT_URL));
+            ((TextView) findViewById(R.id.url)).setText(DEFAULT_URL);
             deleteButton.setEnabled(false);
         }
         findViewById(R.id.install).setOnClickListener(new View.OnClickListener() {
