@@ -17,8 +17,12 @@
 package com.appmanager.android.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,11 +47,13 @@ import com.simplealertdialog.SimpleAlertDialogSupportFragment;
  * @author Soichiro Kashima
  */
 public class EditActivity extends DetailActivity implements InstallTask.InstallListener,
-        SimpleAlertDialog.OnClickListener {
+        SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.ViewProvider {
 
     private static final String DEFAULT_URL = "https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true";
-    private static final int DIALOG_REQUEST_CODE_DELETE = 1;
-    private static final int DIALOG_REQUEST_CODE_FINISH = 2;
+    private static final int DIALOG_REQUEST_CODE_SHOW_PASSWORD = 1;
+    private static final int DIALOG_REQUEST_CODE_DELETE = 2;
+    private static final int DIALOG_REQUEST_CODE_FINISH = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,15 +69,23 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
         mFileEntry = null;
 
         Button deleteButton = (Button) findViewById(R.id.delete);
+        Button showPasswordButton = (Button) findViewById(R.id.show_password);
         if (hasFileEntryInIntent()) {
             mFileEntry = getFileEntryFromIntent();
             if (mFileEntry != null) {
                 setTitle(R.string.activity_title_edit_app);
                 restoreValues(mFileEntry);
             }
+            showPasswordButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    confirmShowPassword();
+                }
+            });
         } else {
             ((TextView) findViewById(R.id.name)).setText(extractNameFromUrl(DEFAULT_URL));
             ((TextView) findViewById(R.id.url)).setText(DEFAULT_URL);
+            showPasswordButton.setEnabled(false);
             deleteButton.setEnabled(false);
         }
         findViewById(R.id.install).setOnClickListener(new View.OnClickListener() {
@@ -170,6 +184,9 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
     @Override
     public void onDialogPositiveButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
         switch (requestCode) {
+            case DIALOG_REQUEST_CODE_SHOW_PASSWORD:
+                checkPasswordAndShow(view);
+                break;
             case DIALOG_REQUEST_CODE_DELETE:
                 delete();
                 break;
@@ -181,6 +198,14 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
 
     @Override
     public void onDialogNegativeButtonClicked(SimpleAlertDialog simpleAlertDialog, int requestCode, View view) {
+    }
+
+    @Override
+    public View onCreateView(SimpleAlertDialog simpleAlertDialog, int requestCode) {
+        if (requestCode == DIALOG_REQUEST_CODE_SHOW_PASSWORD) {
+            return LayoutInflater.from(this).inflate(R.layout.dialog_ask_admin_password, null);
+        }
+        return null;
     }
 
     private void save() {
@@ -200,6 +225,21 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
         finish();
     }
 
+    private void confirmShowPassword() {
+        if (adminPasswordIsSet()) {
+            new SimpleAlertDialogSupportFragment.Builder()
+                    .setTitle(R.string.label_permission_required)
+                    .setPositiveButton(android.R.string.ok)
+                    .setNegativeButton(android.R.string.cancel)
+                    .setRequestCode(DIALOG_REQUEST_CODE_SHOW_PASSWORD)
+                    .setUseView(true)
+                    .create()
+                    .show(getSupportFragmentManager(), "dialog");
+        } else {
+            showPassword();
+        }
+    }
+
     private void confirmDelete() {
         new SimpleAlertDialogSupportFragment.Builder()
                 .setMessage(R.string.msg_confirm_file_entry_delete)
@@ -208,6 +248,25 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
                 .setRequestCode(DIALOG_REQUEST_CODE_DELETE)
                 .create()
                 .show(getSupportFragmentManager(), "dialog");
+    }
+
+    private void checkPasswordAndShow(final View view) {
+        if (view == null) {
+            return;
+        }
+        String inputPassword = ((EditText) view.findViewById(R.id.admin_password)).getText().toString();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedPassword = prefs.getString(SettingsActivity.PREF_KEY_ADMIN_PASSWORD, null);
+        if (!inputPassword.equals(savedPassword)) {
+            Toast.makeText(this, R.string.msg_incorrect_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        showPassword();
+    }
+
+    private void showPassword() {
+        ((EditText) findViewById(R.id.basicAuthPassword)).setInputType(
+                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
     }
 
     private void delete() {
@@ -251,4 +310,9 @@ public class EditActivity extends DetailActivity implements InstallTask.InstallL
         return !before.contentEqualsTo(after);
     }
 
+    private boolean adminPasswordIsSet() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String password = prefs.getString(SettingsActivity.PREF_KEY_ADMIN_PASSWORD, null);
+        return !TextUtils.isEmpty(password);
+    }
 }

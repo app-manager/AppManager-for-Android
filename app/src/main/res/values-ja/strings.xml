@@ -19,10 +19,14 @@
     <string name="label_add_app_empty">+ アプリを追加</string>
     <string name="label_install">インストール</string>
     <string name="label_save">保存</string>
+    <string name="label_show_password">パスワードを表示</string>
     <string name="label_delete">削除</string>
     <string name="label_basic_usage">基本的な使い方</string>
     <string name="label_for_testers">テスターの方へ</string>
     <string name="label_for_developers">開発者の方へ</string>
+    <string name="label_permission_required">パスワードが必要です</string>
+    <string name="label_permission_required_description">この操作は管理者に制限されています。</string>
+    <string name="label_admin_password">管理者パスワード</string>
     <string name="label_current_password">現在のパスワード</string>
     <string name="label_new_password">新しいパスワード</string>
     <string name="label_retype_password">新しいパスワード(確認)</string>
@@ -31,6 +35,7 @@
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
     <string name="msg_installing">インストールしています&#8230;</string>
     <string name="msg_password_not_matched">現在のパスワードが間違っています</string>
+    <string name="msg_incorrect_password">パスワードが正しくありません</string>
     <string name="msg_retyped_password_not_matched">新しいパスワードが再入力したものと一致しません</string>
     <string name="msg_about_am_description">認証機能つきのβ版アプリインストーラ</string>
     <string name="msg_develop_as_open_source">AppManagerはOSSとして開発されています</string>

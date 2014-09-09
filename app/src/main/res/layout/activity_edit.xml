@@ -79,6 +79,12 @@
             android:text="@string/label_save" />
 
         <Button
+            android:id="@+id/show_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_show_password" />
+
+        <Button
             android:id="@+id/delete"
             style="@style/AppButtonStyle.Attention"
             android:layout_width="fill_parent"

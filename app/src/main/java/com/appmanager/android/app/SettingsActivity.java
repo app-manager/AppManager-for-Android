@@ -26,7 +26,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appmanager.android.BuildConfig;
 import com.appmanager.android.R;
 import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
@@ -37,7 +36,7 @@ import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 public class SettingsActivity extends BaseActivity implements SimpleAlertDialog.OnClickListener,
         SimpleAlertDialog.ViewProvider {
 
-    private static final String PREF_KEY_ADMIN_PASSWORD = "admin_password";
+    public static final String PREF_KEY_ADMIN_PASSWORD = "admin_password";
     private static final int DIALOG_REQUEST_CODE_ADMIN_PASSWORD = 1;
 
     @Override
@@ -46,17 +45,12 @@ public class SettingsActivity extends BaseActivity implements SimpleAlertDialog.
         setContentView(R.layout.activity_settings);
         setupActionBar();
 
-        if (BuildConfig.FLAVOR.equals("development")) {
-            findViewById(R.id.set_admin_password).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setAdminPassword();
-                }
-            });
-        } else {
-            findViewById(R.id.category_general).setVisibility(View.GONE);
-            findViewById(R.id.set_admin_password).setVisibility(View.GONE);
-        }
+        findViewById(R.id.set_admin_password).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setAdminPassword();
+            }
+        });
 
         findViewById(R.id.show_version).setOnClickListener(new View.OnClickListener() {
             @Override
