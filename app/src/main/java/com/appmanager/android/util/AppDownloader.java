@@ -169,10 +169,9 @@ public class AppDownloader {
      * <p/>
      * this alg not use If-Modified-Since
      *
-     * @param baseContext Base context to access app local storage
      * @return return true if APK was updated, otherwise false
      */
-    public boolean needToUpdate(final Context baseContext, FileEntry fe) throws IOException {
+    public boolean needToUpdate(FileEntry fe) throws IOException {
         HttpURLConnection c = (HttpURLConnection) mUrl.openConnection();
 
         // Optionally use basic auth

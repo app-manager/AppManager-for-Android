@@ -59,7 +59,7 @@ public class CheckAndInstallService extends IntentService {
             try {
                 LogUtils.d(TAG, "check: " + fe.url);
                 LogUtils.d(TAG, "dump: " + fe.toString());
-                if (downloader.needToUpdate(getApplicationContext(), fe)) {
+                if (downloader.needToUpdate(fe)) {
                     LogUtils.d(TAG, "downloading... " + fe.url);
                     AppDownloader.DownloadResponse response = downloader.download(getApplicationContext());
                     if (response != null) {
