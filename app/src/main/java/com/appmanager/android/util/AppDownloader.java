@@ -43,7 +43,7 @@ import java.util.List;
  * @author maimuzo
  */
 public class AppDownloader {
-    private static final String TAG = "AppDownloader";
+    private static final String TAG = AppDownloader.class.getSimpleName();
     private static final int BUFFER_SIZE = 1024;
     private static final String BASE_DIR = "apk";
     private URL mUrl;

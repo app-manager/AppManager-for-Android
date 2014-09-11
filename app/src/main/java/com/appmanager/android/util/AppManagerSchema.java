@@ -46,7 +46,7 @@ import java.net.URLEncoder;
  * @since 2014/08/30
  */
 public class AppManagerSchema {
-    private static final String TAG = "AppManagerSchema";
+    private static final String TAG = AppManagerSchema.class.getSimpleName();
     public static final String MAIN_SPECIAL_HOST = "import-to-appmanager";
     public static final String[] SPECIAL_HOSTS = new String[]{
             MAIN_SPECIAL_HOST,
