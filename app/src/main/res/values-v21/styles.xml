@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="AppActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:titleTextStyle">@style/AppActionBarTitleTextStyle</item>
+        <item name="android:height">@dimen/action_bar_default_height_material</item>
+    </style>
+
+</resources>
