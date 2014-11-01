@@ -4,9 +4,13 @@
     <color name="text_list">#ff212121</color>
     <color name="text_detail_header">#ff212121</color>
     <color name="text_detail_body">#ff424242</color>
-    <color name="text_list_header">#ffe91e63</color>
+    <color name="primary">#ff3f51b5</color>
+    <color name="primary_dark">#ff303f9f</color>
+    <color name="accent">#ffe91e63</color>
+    <color name="text_color_primary">#ffffffff</color>
+    <color name="text_list_header">@color/accent</color>
     <color name="text_start">#ff757575</color>
-    <color name="text_dialog_title">#ff3f51b5</color>
+    <color name="text_dialog_title">@color/primary</color>
     <color name="edit_text_highlight">#ff9fa8da</color>
 
 </resources>

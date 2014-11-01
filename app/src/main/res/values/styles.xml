@@ -4,15 +4,12 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
-        <item name="actionBarStyle">@style/AppActionBarStyle</item>
-        <item name="actionOverflowButtonStyle">@style/AppActionOverflowButtonStyle</item>
-        <item name="homeAsUpIndicator">@drawable/ic_ab_back</item>
     </style>
 
     <!-- Application theme. -->
@@ -21,20 +18,10 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:buttonStyle">@style/AppButtonStyle</item>
         <item name="android:editTextStyle">@style/AppEditTextStyle</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
-    </style>
-
-    <style name="AppActionBarStyle" parent="Widget.AppCompat.ActionBar.Solid">
-        <item name="background">@drawable/actionbar_background</item>
-        <item name="titleTextStyle">@style/AppActionBarTitleTextStyle</item>
-    </style>
-
-    <style name="AppActionBarTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">#ffffffff</item>
-    </style>
-
-    <style name="AppActionOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_action_overflow</item>
     </style>
 
     <style name="AppButtonStyle" parent="android:Widget.Button">
