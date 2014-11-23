@@ -116,6 +116,11 @@ public class DetailActivity extends BaseActivity implements InstallTask.InstallL
 
     protected void install() {
         FileEntry entry = getFileEntryFromScreen();
+        if (hasFileEntryInIntent()) {
+            FileEntry storedEntry = getFileEntryFromIntent();
+            entry.basicAuthUser = storedEntry.basicAuthUser;
+            entry.basicAuthPassword = storedEntry.basicAuthPassword;
+        }
         FileEntryValidator validator = new FileEntryValidator(this, entry);
         if (!validator.isValid()) {
             Toast.makeText(this, validator.getErrors(), Toast.LENGTH_SHORT).show();
