@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.14.1'
+        classpath 'com.android.tools.build:gradle:0.14.4'
     }
 }
 
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:21.0.0'
-    compile 'com.github.ksoichiro:simplealertdialog:1.2.0@aar'
+    compile 'com.github.ksoichiro:simplealertdialog:1.2.1@aar'
 }
 
 android {
@@ -57,12 +57,12 @@ android {
 
     buildTypes {
         debug {
-            zipAlign true
+            zipAlignEnabled true
         }
 
         release {
-            runProguard false
-            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             def filePrivateProperties = file("private.properties")
             if (filePrivateProperties.exists()) {
                 signingConfig signingConfigs.release
@@ -71,12 +71,12 @@ android {
     }
 
     project.ext.gitHash = "git rev-parse --short HEAD".execute().text.trim()
+
     applicationVariants.all { variant ->
-        def apk = variant.packageApplication.outputFile;
-        def newName = apk.name.replace(".apk", "-${variant.mergedFlavor.versionCode}-${variant.mergedFlavor.versionName}-${project.ext.gitHash}.apk")
-            .replace("app-", "${defaultConfig.applicationId}-");
-        if (variant.zipAlign) {
-            variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace("-unaligned", ""));
-        }
+        def output = variant.outputs.get(0)
+        File apk = output.outputFile
+        String newName = output.outputFile.name.replace(".apk", "-${variant.mergedFlavor.versionCode}-${variant.mergedFlavor.versionName}-${project.ext.gitHash}.apk")
+                .replace("app-", "${variant.mergedFlavor.applicationId}-")
+        output.outputFile = new File(apk.parentFile, newName)
     }
 }
