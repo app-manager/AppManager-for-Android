@@ -41,6 +41,15 @@
         <include layout="@layout/divider" />
 
         <Button
+            android:id="@+id/show_license"
+            style="@style/AppButtonStyle.List"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_category_version_title_license" />
+
+        <include layout="@layout/divider" />
+
+        <Button
             android:id="@+id/show_version"
             style="@style/AppButtonStyle.List"
             android:layout_width="match_parent"

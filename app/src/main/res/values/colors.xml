@@ -11,6 +11,7 @@
     <color name="text_list_header">@color/accent</color>
     <color name="text_start">#ff757575</color>
     <color name="text_dialog_title">@color/primary</color>
+    <color name="text_license">#ff212121</color>
     <color name="edit_text_highlight">#ff9fa8da</color>
 
 </resources>

@@ -58,6 +58,12 @@ public class SettingsActivity extends BaseActivity implements SimpleAlertDialog.
                 startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
             }
         });
+        findViewById(R.id.show_license).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsActivity.this, LicenseActivity.class));
+            }
+        });
         findViewById(R.id.help).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

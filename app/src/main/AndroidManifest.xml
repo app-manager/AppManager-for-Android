@@ -84,6 +84,9 @@
         <activity
             android:name="com.appmanager.android.app.AboutActivity"
             android:label="@string/activity_title_about" />
+        <activity
+            android:name="com.appmanager.android.app.LicenseActivity"
+            android:label="@string/activity_title_license" />
 
         <receiver
             android:name=".receiver.BootCompleteReceiver"
