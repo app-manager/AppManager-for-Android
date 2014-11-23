@@ -1,18 +1,18 @@
-[![AppManager for Android](app/app.png "AppManager for Android")](https://play.google.com/store/apps/details?id=com.appmanager.android)
+[![AppManager for Android](https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/app.png "AppManager for Android")](https://play.google.com/store/apps/details?id=com.appmanager.android)
 
 [![Build Status](https://travis-ci.org/app-manager/AppManager-for-Android.svg?branch=master)](https://travis-ci.org/app-manager/AppManager-for-Android)
 
 AppManager is an Android app to download / install your apps from outside the Google Play store.  
 You can use the latest release version app on Google Play store.
 
-[![Download app from Google Play](app/en_generic_rgb_wo_60.png "Banner")](https://play.google.com/store/apps/details?id=com.appmanager.android)
+[![Download app from Google Play](https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/en_generic_rgb_wo_60.png "Banner")](https://play.google.com/store/apps/details?id=com.appmanager.android)
 
 
 ## Demo
 
 Testers can download your app from your server very easily!
 
-![](app/demo.gif "Demo")
+![](https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/demo.gif "Demo")
 
 
 ## Why do you need this app?
