@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Appmanager-for-android : Android beta app installer with authentication.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Appmanager-for-android</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/app-manager/AppManager-for-Android">View on GitHub</a>
+
+          <h1 id="project_title">Appmanager-for-android</h1>
+          <h2 id="project_tagline">Android beta app installer with authentication.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/app-manager/AppManager-for-Android/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/app-manager/AppManager-for-Android/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p><a href="https://play.google.com/store/apps/details?id=com.appmanager.android"><img src="https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/app.png" alt="AppManager for Android" title="AppManager for Android"></a></p>
+
+<p><a href="https://travis-ci.org/app-manager/AppManager-for-Android"><img src="https://travis-ci.org/app-manager/AppManager-for-Android.svg?branch=master" alt="Build Status"></a></p>
+
+<p>AppManager is an Android app to download / install your apps from outside the Google Play store.<br>
+You can use the latest release version app on Google Play store.</p>
+
+<p><a href="https://play.google.com/store/apps/details?id=com.appmanager.android"><img src="https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/en_generic_rgb_wo_60.png" alt="Download app from Google Play" title="Banner"></a></p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>Testers can download your app from your server very easily!</p>
+
+<p><img src="https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/demo.gif" alt="" title="Demo"></p>
+
+<h2>
+<a id="why-do-you-need-this-app" class="anchor" href="#why-do-you-need-this-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why do you need this app?</h2>
+
+<ul>
+<li>For alpha / beta application testing,
+you can distribute app from your web servers, but
+some Web browsers of Android devices are basically
+not be able to download
+the apk files from the site with BASIC / DIGEST auth,
+which makes it difficult to distribute apps to limited users.</li>
+<li>You can now use Google Play's alpha / beta distribution feature,
+but it is limited to only 2 versions (alpha and beta).
+We often need more variations of an app in some situations.
+For example, the app uses a Web service and it contains an API key
+for each clients.</li>
+<li>And this app will solve these problems! (Maybe)</li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>You can download the app from the website with Basic auth.</li>
+<li>You can add entries with URL. (Using Android's intent)</li>
+<li>Apps will be automatically updated if there are any updates after booting device.</li>
+</ul>
+
+<h3>
+<a id="and-in-the-future" class="anchor" href="#and-in-the-future" aria-hidden="true"><span class="octicon octicon-link"></span></a>And in the future...</h3>
+
+<ul>
+<li>Administrator can restrict add/modify/delete entries with password.</li>
+<li>Administrator can manage application lifetime, which means
+that you can control when the users can download and use the app.</li>
+</ul>
+
+<h2>
+<a id="how-to-add-entries-using-intent" class="anchor" href="#how-to-add-entries-using-intent" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to add entries using Intent</h2>
+
+<p>If you want to an entry on multiple devices, you can send email with a special format URL.</p>
+
+<h3>
+<a id="import-to-manager-host" class="anchor" href="#import-to-manager-host" aria-hidden="true"><span class="octicon octicon-link"></span></a>import-to-manager host</h3>
+
+<p>AppManager supports <code>http</code> and <code>https</code> scheme with <code>app-manager.github.io</code> or <code>import-to-manager</code> host.</p>
+
+<p>e.g.</p>
+
+<p>If you send an email with following URL,</p>
+
+<blockquote>
+<p>https://<strong>user</strong>:<strong>pass</strong>@<strong>app-manager.github.io</strong>/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#<strong>appName</strong></p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+<p>https://<strong>user</strong>:<strong>pass</strong>@<strong>import-to-appmanager</strong>/github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true#<strong>appName</strong></p>
+</blockquote>
+
+<p>↓</p>
+
+<p>AppManager will parse URL and set information for a new entry:</p>
+
+<pre><code>Name: appName
+Basic Auth User: user
+Basic Auth Password: pass
+URL: https://github.com/app-manager/AppManager-for-Android/blob/master/tests/apk/dummy.apk?raw=true
+</code></pre>
+
+<p>Note that <code>import-to-appmanager</code> is simple but not a valid domain format, so some mailers won't assume it as an URL.<br>
+If you have any troubles with using <code>import-to-appmanager</code> as a host name, please use <code>app-manager.github.io</code> instead.</p>
+
+<h2>
+<a id="automatic-update" class="anchor" href="#automatic-update" aria-hidden="true"><span class="octicon octicon-link"></span></a>Automatic update</h2>
+
+<p>AppManager checks if there are any updates when the device has been booted, by sending HTTP request to each URLs and checking Etags.</p>
+
+<h2>
+<a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developed By</h2>
+
+<ul>
+<li>Soichiro Kashima - <a href="mailto:soichiro.kashima@gmail.com">soichiro.kashima@gmail.com</a>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2014 Soichiro Kashima
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Appmanager-for-android maintained by <a href="https://github.com/app-manager">app-manager</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
