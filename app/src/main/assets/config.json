@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "id": "com.appmanager.android",
+            "publish_url": "https://play.google.com/store/apps/details?id=com.appmanager.android",
+            "latest_version": 1,
+            "latest_version_name": "0.1.0"
+        },
+        {
+            "id": "com.appmanager.android.dev",
+            "publish_url": "https://play.google.com/store/apps/details?id=com.appmanager.android",
+            "latest_version": 2,
+            "latest_version_name": "0.1.1"
+        }
+    ]
+}

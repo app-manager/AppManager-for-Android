@@ -33,6 +33,7 @@
     <string name="label_version">バージョン</string>
     <string name="msg_confirm_file_entry_delete">本当に削除しますか？この操作は元に戻せません。</string>
     <string name="msg_confirm_file_entry_finish">変更内容を破棄しますか？</string>
+    <string name="msg_info_update">バージョン%1$sにアップデートできます</string>
     <string name="msg_installing">インストールしています&#8230;</string>
     <string name="msg_password_not_matched">現在のパスワードが間違っています</string>
     <string name="msg_incorrect_password">パスワードが正しくありません</string>

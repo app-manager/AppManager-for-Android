@@ -16,6 +16,7 @@ repositories {
 dependencies {
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'com.github.ksoichiro:simplealertdialog:1.2.1@aar'
+    compile 'com.nineoldandroids:library:2.4.0'
 }
 
 android {
@@ -49,9 +50,11 @@ android {
         // Flavor to develop/test experimental feature.
         development {
             applicationId "com.appmanager.android.dev"
+            buildConfigField "String", "CONFIG_URL", "\"file:///android_asset/config.json\""
         }
         // Flavor to production release. This should be as stable as possible.
         production {
+            buildConfigField "String", "CONFIG_URL", "\"https://raw.githubusercontent.com/app-manager/AppManager-for-Android/master/app/src/main/assets/config.json\""
         }
     }
 

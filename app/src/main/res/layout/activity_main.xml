@@ -12,6 +12,23 @@
         android:divider="@drawable/bg_divider"
         android:dividerHeight="1px" />
 
+    <RelativeLayout
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#8BC34A"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/margin_standard"
+            android:paddingRight="@dimen/margin_standard"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
     <ScrollView
         android:id="@+id/empty"
         android:layout_width="match_parent"
