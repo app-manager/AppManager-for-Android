@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="software_list">
+    <string-array name="software_list" translatable="false">
         <item>NineOldAndroids</item>
         <item>SimpleAlertDialog for Android</item>
     </string-array>
 
-    <string-array name="license_list">
+    <string-array name="license_list" translatable="false">
         <item><![CDATA[<p>Copyright 2012 Jake Wharton</p>
 
 <p>Licensed under the Apache License, Version 2.0 (the \"License\");
