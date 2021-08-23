@@ -16,4 +16,8 @@ before_script:
     - emulator -avd test -no-skin -no-audio -no-window &
     - android-wait-for-emulator
 script:
-    - travis_retry ./gradlew assemble connectedCheck
+    - ./gradlew assemble connectedCheck
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
